@@ -1,0 +1,9 @@
+.idea
+*.pyc
+__pycache__
+data/
+app/models/
+app/static/node_modules/
+app/static/bower_components/
+jupyter/
+proj/sql.py

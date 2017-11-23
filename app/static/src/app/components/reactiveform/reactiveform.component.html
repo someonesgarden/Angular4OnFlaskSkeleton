@@ -1,0 +1,39 @@
+<h3>Reactive Form</h3>
+<form [formGroup]="myForm" (ngSubmit)="show()">
+  <div>
+    <label for="mail">メールアドレス：</label><br/>
+    <input type="email" id="mail" name="mail" [formControl]="mail"/>
+    <span *ngIf="mail.errors?.required">メールアドレスは必須です</span>
+    <span *ngIf="mail.errors?.email">メールアドレスを正しい形式で入力してください。</span>
+  </div>
+
+  <div>
+    <label for="passwd">パスワード：</label>
+    <br>
+    <input type="password" id="passwd" name="passwd" [formControl]="passwd"/>
+    <span *ngIf="passwd.errors?.required">パスワードは必須です。</span>
+    <span *ngIf="passwd.errors?.minlength">パスワードは６文字以上で入力してください。</span>
+  </div>
+  <div>
+    <label for="name">名前（漢字）：</label>
+    <br>
+    <input type="text" id="name" name="name" [formControl]="name" />
+    <span *ngIf="name.errors?.minlength">名前（漢字）は３文字以上で入力してください。</span>
+    <span *ngIf="name.errors?.maxlength">名前（漢字）は１０文字以内で入力してください。</span>
+  </div>
+
+  <div>
+    <label for="memo">備考：</label>
+    <textarea name="memo" id="memo" cols="30" rows="5" [formControl]="memo"></textarea>
+    <span *ngIf="memo.errors?.maxlenegth">備考は10文字以内で入力してください。</span>
+  </div>
+
+  <div>
+    <input type="submit" value="送信" [disabled]="myForm.invalid">
+  </div>
+</form>
+
+<pre>
+  {{myForm.value | json }}
+</pre>
+

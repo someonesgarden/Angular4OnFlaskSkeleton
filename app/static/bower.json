@@ -1,0 +1,21 @@
+{
+  "name": "static",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Daisuke Nishimura <d@someonesgarden.org>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/someonesgarden/Angular4OnFlaskSkeleton",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "d3": "^4.11.0"
+  }
+}

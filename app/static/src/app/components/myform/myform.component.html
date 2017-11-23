@@ -1,0 +1,24 @@
+<h3>文字数カウント機能付きテキストエリア</h3>
+<form #myForm="ngForm">
+  <textarea name="tweet" id="tweet" cols="70" rows="5" [(ngModel)]="tweet" (input)="setcolor()">  </textarea>
+    <div [ngStyle]="myStyle">{{count}}</div>
+</form>
+<pre>
+  {{myForm.value | json }}
+</pre>
+
+
+<h3>テキストボックスの内容を区切り文字で分割</h3>
+<form #myForm2="ngForm">
+  <label for="mail">Mail</label>
+  <textarea name="mail" id="mail" type="text"
+            [ngModel]="emails.join(';')"
+            (ngModelChange)="emails=$event.split(';')"></textarea>
+</form>
+<ul>
+  <li *ngFor="let email of emails">{{email}}</li>
+</ul>
+
+<pre>
+  {{myForm2.value | json }}
+</pre>
