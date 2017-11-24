@@ -48,21 +48,27 @@ class NWinnerSpider(scrapy.Spider):
     def parse_bio(self, response):
         item = response.meta['item']
         item['image_urls'] = []
-        # href = response.xpath("//li[@id='t-wikibase']/a/@href").extract()
-        # if href:
-        #     # Wikipedia have changed the wikibase URL to include the 'https:' leader
-        #     # url = 'https:' + href[0]
-        #     url = href[0]
-        #     request = scrapy.Request(url,\
-        #                   callback=self.parse_wikidata,\
-        #                   dont_filter=True)
-        #     request.meta['item'] = item
-        #     yield request
+        print("response=")
+        print(response)
+        href = response.xpath("//li[@id='t-wikibase']/a/@href").extract()
+        print("href=")
+        print(href)
 
-        url = "https://www.wikidata.org/wiki/Q218964"
-        request = scrapy.Request(url, callback=self.parse_wikidata, dont_filter=True)
-        request.meta['item'] = item
-        yield request
+        if href:
+            href_ary = href[0].split("/")
+            href_id = href_ary[-1]
+            # Wikipedia have changed the wikibase URL to include the 'https:' leader
+            # url = 'https:' + href[0]
+            # url = href[0]
+            url = "https://www.wikidata.org/wiki/"+href_id
+            request = scrapy.Request(url, callback=self.parse_wikidata, dont_filter=True)
+            request.meta['item'] = item
+            yield request
+
+        # url = "https://www.wikidata.org/wiki/Q218964"
+        # request = scrapy.Request(url, callback=self.parse_wikidata, dont_filter=True)
+        # request.meta['item'] = item
+        # yield request
 
 
 
@@ -84,13 +90,9 @@ class NWinnerSpider(scrapy.Spider):
             link_html = ''
             if prop.get('link'):
                 link_html = '/a'
-            sel = response.xpath(p_template.format(\
-                code=prop['code'], link_html=link_html))
+            sel = response.xpath(p_template.format(code=prop['code'], link_html=link_html))
             if sel:
                 item[prop['name']] = sel[0].extract()
-
-            print('item is=')
-            print(item)
 
         yield item
 
@@ -102,7 +104,7 @@ def get_persondata(table, item):
         label = tr.xpath('td[@class="persondata-label"]/text()').extract()
         if label and label[0] in fields:
             text = ' '.join(tr.xpath('td[not(@class)]/descendant-or-self::text()').extract())
-            print(text)
+            # print(text)
             item[label[0].lower().replace(' ', '_')] = text
 
 def guess_gender(text, threshold=0):

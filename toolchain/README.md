@@ -46,7 +46,8 @@ Cleanの段階は、データをPandasのDataframeに読み込んだ後、思考
 
 2-1-2). `%run ../toolchain/clean/clean.py`
 のように、修正を加えたい起動ファイルをJupyter上で読み込むことで、動的に変数をチェックすることができる。
-
+こ のプロセスで、mongoDBの"nobel_prize"データベースの中に
+winnersとwinners_born_inというコレクションとして保存される。
 
 ### 3. Explore/Process
 

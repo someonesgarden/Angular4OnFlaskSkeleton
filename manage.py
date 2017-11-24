@@ -4,13 +4,13 @@
 
 import os
 from app import create_app
-from flask.ext.script import Manager
+from flask.ext.script import Manager, Server
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
-app.debug = True
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 
 manager = Manager(app)
+manager.add_command("runserver", Server(port=5000))
 
 
 if __name__ == '__main__':
