@@ -5,6 +5,7 @@ data/
 app/models/
 app/static/node_modules/
 app/static/bower_components/
+app/static/images/
 app/static/package-lock.json
 jupyter/
 proj/sql.py
