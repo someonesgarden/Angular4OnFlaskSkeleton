@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+# -*- coding:utf-8 -*-
+
+from eve import Eve
+
+app = Eve()
+
+if __name__=='__main__':
+    app.run(debug=True)

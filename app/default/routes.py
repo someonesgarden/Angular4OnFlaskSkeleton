@@ -17,6 +17,7 @@ db = get_mongo_database('nobel_prize')
 
 @default.route('/')
 def home():
+    # Angular4 page
     return default.send_static_file('index.html')
 
 
@@ -34,7 +35,6 @@ def math():
             query_dict[key] = arg
 
     winners = db['winners'].find(query_dict)
-
 
     if winners:
         df_winners = pd.DataFrame(list(winners))

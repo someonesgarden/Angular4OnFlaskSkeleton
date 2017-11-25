@@ -13,6 +13,24 @@ index.htmlを"dist"の中に構築することで読み出している。
 クライアントサイドは app/staticの中で"ng build --dev --watch"コマンドで起動している。
 
 
+============
+構成
+============
+
+    |--- api  Python EVEによるMongo DBサーバー
+    |
+    |-- app------ static -- Angular4 のapplication
+    |     |
+    |     |------ default --routes.py FLASKのルーティング用
+    |
+    |-- jupyter --- 実験用のjupyter notebook
+    |
+    |-- scrapy  SCRAPYによるスクレイピング用モジュール
+    |
+    |-- toolchains データの準備のためのプロセスごとのPython
+    |
+    |-- manage.py  FLASKのメイン
+
 
 ============
 設定方法

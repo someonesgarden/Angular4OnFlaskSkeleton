@@ -1,6 +1,36 @@
 html(lang="ja")
     head
+        title Mongo_Test
         meta(charset="UTF-8")
-        title Title
+        script(src="static/bower_components/d3/d3.min.js")
+        script(src="static/bower_components/jquery/dist/jquery.min.js")
+        script.
+            var API_URL = 'http://localhost:5000/api';
+
+            var displayJSON = function(query) {
+                d3.json(API_URL + query, function(error, data){
+
+                    if(error){
+                        return console.warn(error);
+                    }
+                    d3.select('#query pre').html(query);
+                    d3.select('#data pre').html(JSON.stringify(data, null, 4));
+                    console.log(data);
+                });
+            };
+
+            var query = '/winners?where=' + JSON.stringify({
+                "year":{"$gt":2000},
+                "gender":"female"
+            });
+            displayJSON(query);
     body
-        p matj,atj,
+        h3 Request
+        div#query
+            pre
+
+        h3 Response
+        div#data
+            pre
+
+

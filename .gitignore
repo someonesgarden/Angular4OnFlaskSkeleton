@@ -8,7 +8,7 @@ app/static/bower_components/
 app/static/images/
 app/static/package-lock.json
 jupyter/
-proj/sql.py
+app/models/sql.py
 scrapy/nobel_winners/.scrapy/
 .ipynb_checkpoints/
 app/static/src/assets/web-animations-js-dev/test/web-platform-tests/

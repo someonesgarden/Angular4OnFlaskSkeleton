@@ -50,12 +50,20 @@ Cleanの段階は、データをPandasのDataframeに読み込んだ後、思考
 winnersとwinners_born_inというコレクションとして保存される。
 
 ### 3. Explore/Process
-
 with Ipython + Pandas+ Matplotlib
 
-### Deliver
+この段階で、MongoDBの中には４種類のコレクションが作られている。
+これを元にd3.jsでグラフを作ってゆく。
 
+    winner_bios 
+    winners
+    winners_all (winnersとwinner_biosをマージしたもの）
+    winners_born_in
+
+### Deliver
 Flask RESTful API
+Python Eveを利用して、MongoDBベースのRESTful APIを作成できる。
+pip install eve
 
 ### 5. Transform
 

@@ -18,12 +18,14 @@ import json
 # それを分析のために読み出す。
 df_clean = mongo_to_dataframe('nobel_prize', 'winners')  # データフレームに読み込む
 df_born_in  = mongo_to_dataframe('nobel_prize', 'winners_born_in')  # データフレームに読み込む
+df_winner_bios = pd.read_json(open(rootdir+'/app/static/data/minibios.json'))
 
 # 2) PandasのMergeコマンドで二つのデータフレームをマージする
 # サイトのアドレス"link"をキーとして結合する
+# その後、明らかにマージミスのコラムだけ外して、NaT処理をして、MONGO DBに保存。
 df_winners_all = pd.merge(df_clean, df_winner_bios, how='outer', on='link')
-# dataframe_to_mongo(df_winners_all, 'nobel_prize', 'df_winners_all')
-
+df_winners_all = df_winners_all[df_winners_all.name.notnull()]
+dataframe_to_mongo(df_winners_all, 'nobel_prize', 'winners_all')
 
 # 2) PLOTの初期設定
 mpl.rcParams['lines.linewidth']=2
