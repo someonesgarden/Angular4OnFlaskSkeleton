@@ -18,6 +18,7 @@ import { AframeComponent } from './aframe/aframe.component'; // <-- import state
 import { D3Component} from './d3/d3.component';
 import { UnderscoreComponent } from './underscore/underscore.component';
 import { MenuComponent } from './menu/menu.component';
+import { GraphmainComponent } from './graphmain/graphmain.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MenuComponent } from './menu/menu.component';
     AframeComponent,
     D3Component,
     UnderscoreComponent,
-    MenuComponent
+    MenuComponent,
+    GraphmainComponent
   ],
   imports: [
     BrowserModule,

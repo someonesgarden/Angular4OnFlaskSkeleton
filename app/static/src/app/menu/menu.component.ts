@@ -33,7 +33,6 @@ export class MenuComponent implements OnInit {
     }, 1000);
   }
 
-
   menuInit() {
     console.log('MENU:menuInit');
     const nats = G.nbviz.countrySelectGroups = G.nbviz.countryDim.group().all()

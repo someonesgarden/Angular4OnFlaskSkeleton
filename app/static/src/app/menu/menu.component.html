@@ -50,7 +50,6 @@
           </div>
       </div>
 
-
     <div class="item">
       <div class="ui action left icon input">
         <i class="search icon"></i>
@@ -62,8 +61,8 @@
   </div>
 </div>
 
-
-<div class="ui toggle checkbox" style="float:right;" (click)="dropdownOpen($event)">
-  <input type="checkbox" id="menu_toggle" name="menu_toggle" [(ngModel)]="menu_show"><label>Show/Hide Menu</label>
-</div>
+<div class="ui grid">
+        <div class="ui toggle checkbox sixteen wide column" style="float:right;" (click)="dropdownOpen($event)">
+          <input type="checkbox" id="menu_toggle" name="menu_toggle" [(ngModel)]="menu_show"><label>Show/Hide Menu</label>
+  </div></div>
 

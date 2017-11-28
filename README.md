@@ -52,6 +52,8 @@ https://github.com/someonesgarden/Flask_Angular4_Skeleton
 `ng build --dev --watch`
 6.  http://127.0.0.1:5000/
 
+7.EVEサーバーの起動
+`api/server_eve.py`
 
 ============
 Projectの詳細
