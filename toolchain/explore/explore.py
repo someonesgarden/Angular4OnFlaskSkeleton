@@ -14,11 +14,20 @@ import matplotlib.pyplot as plt
 from app.models.mongofunc import save_to_mongodb, get_mongo_database, mongo_to_dataframe, dataframe_to_mongo
 import json
 
+# 4)Mini-BIosもJSONからMONGODBに保存
+df_winner_bios = pd.read_json(open(rootdir+'/app/static/data/minibios.json'))
+df_winner_bios = df_winner_bios.where((pd.notnull(df_winner_bios)), None)
+
+# print(df_winner_bios[df_winner_bios.link == 'http://en.wikipedia.org/wiki/Henrik_Dam'])
+
+dataframe_to_mongo(df_winner_bios, 'nobel_prize', 'winner_bios')
+
+
 # 1) ScrapyでスクレイプしたJSONデータがMONGO DBに保存されているので、
 # それを分析のために読み出す。
 df_clean = mongo_to_dataframe('nobel_prize', 'winners')  # データフレームに読み込む
 df_born_in  = mongo_to_dataframe('nobel_prize', 'winners_born_in')  # データフレームに読み込む
-df_winner_bios = pd.read_json(open(rootdir+'/app/static/data/minibios.json'))
+df_winner_bios = mongo_to_dataframe('nobel_prize', 'winners_bios')  # データフレームに読み込む
 
 # 2) PandasのMergeコマンドで二つのデータフレームをマージする
 # サイトのアドレス"link"をキーとして結合する

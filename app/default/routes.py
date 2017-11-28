@@ -19,6 +19,7 @@ db = get_mongo_database('nobel_prize')
 def home():
     # Angular4 page
     return default.send_static_file('index.html')
+    # return render_template('/app/static/src/index.html')
 
 
 @default.route('/math')

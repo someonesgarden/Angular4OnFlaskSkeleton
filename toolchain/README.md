@@ -65,6 +65,9 @@ Flask RESTful API
 Python Eveを利用して、MongoDBベースのRESTful APIを作成できる。
 pip install eve
 
+EVEサーバーの起動
+`api/server_eve.py`
+
 ### 5. Transform
 
 with D3, Interactive Nobel Visualization

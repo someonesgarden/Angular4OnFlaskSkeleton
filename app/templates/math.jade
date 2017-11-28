@@ -19,10 +19,14 @@ html(lang="ja")
                 });
             };
 
+            /*
             var query = '/winners?where=' + JSON.stringify({
                 "year":{"$gt":2000},
                 "gender":"female"
             });
+            */
+
+            var query = '/winners?projection=' + JSON.stringify({'mini_bio': '0'});
             displayJSON(query);
     body
         h3 Request

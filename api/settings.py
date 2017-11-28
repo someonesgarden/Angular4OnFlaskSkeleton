@@ -14,13 +14,14 @@ DOMAINにcollection名
 
 URL_PREFIX = 'api'
 MONGO_DBNAME = 'nobel_prize'
-DOMAIN = {'winners': {
+DOMAIN = {'winners_all': {
     'schema': {
         'country': {'type': 'string'},
         'category': {'type': 'string'},
         'name': {'type': 'string'},
         'year': {'type': 'integer'},
         'gender': {'type': 'string'},
+        'link':{'type':'string'},
         'mini_bio':{'type':'string'},
         'bio_image':{'type':'string'}
     },

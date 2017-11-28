@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 body{
-  background-color: #314044;
-  color:white;
+  background-color: #f9f5d7 ! important;
+}
+
+#index_container{
+  padding:16px;
 }

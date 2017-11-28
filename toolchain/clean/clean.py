@@ -16,7 +16,6 @@ import json
 # 1)# ScrapyでスクレイプしたJSONデータをMONGOに保存する
 df = pd.read_json(open(rootdir+'/app/static/data/nobel_winners_full.json')) # jsonから直接データフレームを作る場合
 
-
 # print(df.describe())
 # print(df.info())
 # print(df.head())
@@ -40,6 +39,8 @@ def clean_data(df):
     df = df.replace('\n', np.nan)
     df_born_in = df[df.born_in.notnull()]
 
+    # df = df.where((pd.notnull(df)), None)
+
     df.name = df.name.str.replace('*', '')
     df.name = df.name.str.strip()
     df = df[df.born_in.isnull()]
@@ -56,15 +57,16 @@ def clean_data(df):
     df = df[df.gender.notnull()] # remove institutional prizes
     df.ix[df.name == 'Hiroshi Amano', 'date_of_birth'] ='11 September 1960'
     df.date_of_birth = pd.to_datetime(df.date_of_birth)
-    df.date_of_death = [pd.to_datetime(d, unit='D') if not pd.isnull(d) else "alive" for d in df.date_of_death]
+    df.date_of_death = [pd.to_datetime(d, unit='D') if not pd.isnull(d) else 'alive' for d in df.date_of_death]
     # df.date_of_death = pd.to_datetime(df.date_of_death, errors='coerce')
     #  この方法だとNaTの処理でNaNがNaTになって、mongoに送った時にエラーになる。
-    # エラーが出るので上のように回避し、現存しているノーベル賞受賞者は"alive"となるようにした。
+    # エラーが出るので上のように回避し、現存しているノーベル賞受賞者は"alive"となるようにした。 Noneとすると、これでもエラーが出る。
 
     df['award_age'] = df.year - pd.DatetimeIndex(df.date_of_birth).year
     return df, df_born_in
 
 #######################################
+
 
 df_clean, df_born_in = clean_data(df)
 dataframe_to_mongo(df_clean, 'nobel_prize', 'winners')
@@ -73,4 +75,5 @@ dataframe_to_mongo(df_born_in, 'nobel_prize', 'winners_born_in')
 
 # 4)Mini-BIosもJSONからMONGODBに保存
 df_winner_bios = pd.read_json(open(rootdir+'/app/static/data/minibios.json'))
+df_winner_bios = df_winner_bios.where((pd.notnull(df_winner_bios)), None)
 dataframe_to_mongo(df_winner_bios, 'nobel_prize', 'winner_bios')

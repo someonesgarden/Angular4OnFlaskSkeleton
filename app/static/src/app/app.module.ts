@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { MyformComponent } from './components/myform/myform.component';
 import { ReactiveformComponent } from './components/reactiveform/reactiveform.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { NgSemanticModule } from 'ng-semantic';
+import { HttpModule } from '@angular/http'; // HTTPクライアント機能
 
 // Custom Modules
 
@@ -15,6 +17,7 @@ import { D3Service } from 'd3-ng2-service';
 import { AframeComponent } from './aframe/aframe.component'; // <-- import statement
 import { D3Component} from './d3/d3.component';
 import { UnderscoreComponent } from './underscore/underscore.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +28,16 @@ import { UnderscoreComponent } from './underscore/underscore.component';
     D3graphComponent,
     AframeComponent,
     D3Component,
-    UnderscoreComponent
+    UnderscoreComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     CoopModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpModule
   ],
   providers: [D3Service],
   bootstrap: [AppComponent],

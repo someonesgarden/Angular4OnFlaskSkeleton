@@ -22,13 +22,13 @@ export class D3Component implements OnInit {
     this.displayJSON = function(query) {
       d3.json(this.API_URL + query, function(error, data){
 
-        console.log(data);
+        // console.log(data);
           if (error) {
               return console.warn(error);
           }
-          d3.select('#query pre').html(query);
-          d3.select('#data pre').html(JSON.stringify(data, null, 4));
-          console.log(data);
+          d3.select('#query').html(query);
+          d3.select('#data').html(JSON.stringify(data, null, 4));
+          // console.log(data);
       });
     };
     // 通常のwhereでセレクトする場合
@@ -36,8 +36,13 @@ export class D3Component implements OnInit {
     //   'year': {'$gt': 2000},
     //   'gender': 'female'
     // });
+
+    this.query = '/winners?where=' + JSON.stringify({
+      'name': 'Albert Einstein'
+    });
+
     // projectionを使うときには、'0'のようにシングルコンマを忘れずに！!!!
-    this.query = '/winners?projection=' + JSON.stringify({'mini_bio': '0'});
+    // this.query = '/winners?projection=' + JSON.stringify({'mini_bio': '0'});
   }
 
   sampleGraph() {
@@ -56,5 +61,11 @@ export class D3Component implements OnInit {
   ngOnInit() {
     // this.sampleGraph();
     this.displayJSON(this.query);
+  }
+
+  onvoted(ev): void {
+    console.log('onvoted_init');
+    console.log(ev);
+    console.log('APP:onvoted_end');
   }
 }
