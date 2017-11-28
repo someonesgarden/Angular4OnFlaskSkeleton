@@ -77,11 +77,7 @@ export let nbviz = {
         // make main data-ball
         const data = countryGroups.map( function(c) {
             const cData = nbviz.data.countryData[c.key];
-            console.log('cData');
-            console.log(cData);
             let value = c.value;
-            console.log('value');
-            console.log(value);
             // if per-capita value then divide by pop. size
             if (nbviz.valuePerCapita) {
                 value /= cData.population;
@@ -96,10 +92,14 @@ export let nbviz = {
             .sort(function(a, b) {
                 return b.value - a.value; // descending
             });
-
-        console.log(data);
         return data;
     },
+  initMap : function(worldMap, countryNames){
+      console.log('worldMap');
+      console.log(worldMap);
+      console.log('countryNames');
+      console.log(countryNames);
+  },
   onDataChange : function() {
     console.log('onDataChange');
     const data = nbviz.getCountryData();

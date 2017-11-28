@@ -1,5 +1,5 @@
 ///<reference path="../../../node_modules/@types/d3-selection/index.d.ts"/>
-import { Component, OnInit, AfterViewChecked, AfterContentChecked, ElementRef} from '@angular/core';
+import {Component, OnInit, ElementRef} from '@angular/core';
 import {Input, Output, EventEmitter} from '@angular/core';
 import * as d3 from 'd3';
 import * as G from '../../globals';
@@ -12,7 +12,7 @@ declare var jQuery: any;
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit, AfterViewChecked, AfterContentChecked {
+export class MenuComponent implements OnInit {
 
   @Output() onvoted = new EventEmitter<String>();
 
@@ -24,43 +24,38 @@ export class MenuComponent implements OnInit, AfterViewChecked, AfterContentChec
   constructor(private elementRef: ElementRef) {
     this.catList = [G.nbviz.ALL_CATS].concat(G.nbviz.CATEGORIES);
     this.selectData = G.nbviz.COUNTRIES;
-
-
-    // const nats = G.nbviz.countrySelectGroups = G.nbviz.countryDim.group().all()
-    //         .sort(function(a, b) {
-    //             return b.value - a.value; // descending
-    //         });
-    // const fewWinners = {1:[], 2:[]};
-    // this.selectData = [G.nbviz.ALL_WINNERS];
-    //
-    //     nats.forEach(function(o) {
-    //       if (o.value <= 2) {
-    //         fewWinners[o.value].push(o.key);
-    //       } else {
-    //         this.selectData.push(o.key);
-    //       }
-    //     });
-    //
-    // this.selectData.push(
-    //         G.nbviz.DOUBLE_WINNERS,
-    //         G.nbviz.SINGLE_WINNERS
-    //     );
-
-    G.nbviz.makeFilterAndDimensions({});
   }
 
   ngOnInit() {
-     setTimeout(function(){
-       jQuery('.ui.dropdown').dropdown();
-       jQuery('.ui.radio.checkbox').checkbox();
+    setTimeout(function () {
+      jQuery('.ui.dropdown').dropdown();
+      jQuery('.ui.radio.checkbox').checkbox();
     }, 1000);
   }
 
-  ngAfterViewChecked(): void {
+
+  menuInit() {
+    console.log('MENU:menuInit');
+    const nats = G.nbviz.countrySelectGroups = G.nbviz.countryDim.group().all()
+      .sort(function (a, b) {
+        return b.value - a.value; // descending
+      });
+    const fewWinners = {1: [], 2: []};
+    this.selectData = [G.nbviz.ALL_WINNERS];
+    nats.forEach((o) => {
+      if (o.value <= 2) {
+        fewWinners[o.value].push(o.key);
+      } else {
+        this.selectData.push(o.key);
+      }
+    });
+
+    this.selectData.push(
+      G.nbviz.DOUBLE_WINNERS,
+      G.nbviz.SINGLE_WINNERS
+    );
   }
 
-  ngAfterContentChecked(): void {
-  }
 
   gotoLink(e: any, addr: string): void {
     console.log(e);
@@ -79,21 +74,20 @@ export class MenuComponent implements OnInit, AfterViewChecked, AfterContentChec
   }
 
   commuAction(ev) {
-      this.onvoted.emit('test_commu');
-      console.log('afasdf');
+    this.onvoted.emit('test_commu');
+    console.log('afasdf');
   }
 
   dropdownOpen(e: any): void {
     console.log('test');
-    setTimeout(function(){
-          jQuery('.ui.dropdown').dropdown();
-          jQuery('.ui.radio.checkbox').checkbox();
+    setTimeout(function () {
+      jQuery('.ui.dropdown').dropdown();
+      jQuery('.ui.radio.checkbox').checkbox();
       e.stopPropagation();
     }, 1000);
   }
 
-
-  // dataViz
+  //////// ---------------  dataViz ------------------- ////
   catSelect(ev: any): void {
     const category = ev.target.value;
     G.nbviz.filterByCategory(category);
@@ -123,13 +117,13 @@ export class MenuComponent implements OnInit, AfterViewChecked, AfterContentChec
     const fewWinners = {1: [], 2: []};
     let countries;
     if (country === G.nbviz.ALL_WINNERS) {
-        countries = [];
+      countries = [];
     } else if (country === G.nbviz.DOUBLE_WINNERS) {
-        countries = fewWinners[2];
-    }  else if (country === G.nbviz.SINGLE_WINNERS) {
-        countries = fewWinners[1];
+      countries = fewWinners[2];
+    } else if (country === G.nbviz.SINGLE_WINNERS) {
+      countries = fewWinners[1];
     } else {
-        countries = [country];
+      countries = [country];
     }
     G.nbviz.filterByCountries(countries);
     G.nbviz.onDataChange();
