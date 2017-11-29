@@ -32,5 +32,6 @@ DOMAIN = {'winners_all': {
 X_DOMAINS = '*'  # COR for all sites(CORS= Cross-Origin Resource Sharing)
 HATEOAS = False
 PAGINATION = False
+# ALLOW_UNKNOWN = True
 
 

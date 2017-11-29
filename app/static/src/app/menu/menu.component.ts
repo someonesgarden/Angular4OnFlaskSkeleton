@@ -1,9 +1,9 @@
 ///<reference path="../../../node_modules/@types/d3-selection/index.d.ts"/>
-import {Component, OnInit, ElementRef} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ElementRef} from '@angular/core';
 import {Input, Output, EventEmitter} from '@angular/core';
+import {ViewChildren, QueryList} from '@angular/core';
 import * as d3 from 'd3';
 import * as G from '../../globals';
-
 declare var jQuery: any;
 
 
@@ -12,7 +12,7 @@ declare var jQuery: any;
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, AfterViewInit {
 
   @Output() onvoted = new EventEmitter<String>();
 
@@ -20,10 +20,10 @@ export class MenuComponent implements OnInit {
   menu_show = true;
   catList = null;
   selectData = null;
+  graphmainComp = null;
 
   constructor(private elementRef: ElementRef) {
     this.catList = [G.nbviz.ALL_CATS].concat(G.nbviz.CATEGORIES);
-    this.selectData = G.nbviz.COUNTRIES;
   }
 
   ngOnInit() {
@@ -33,12 +33,17 @@ export class MenuComponent implements OnInit {
     }, 1000);
   }
 
-  menuInit() {
+  ngAfterViewInit(): void{
+
+  }
+
+  initMenu() {
     console.log('MENU:menuInit');
     const nats = G.nbviz.countrySelectGroups = G.nbviz.countryDim.group().all()
       .sort(function (a, b) {
         return b.value - a.value; // descending
       });
+
     const fewWinners = {1: [], 2: []};
     this.selectData = [G.nbviz.ALL_WINNERS];
     nats.forEach((o) => {
@@ -90,7 +95,7 @@ export class MenuComponent implements OnInit {
   catSelect(ev: any): void {
     const category = ev.target.value;
     G.nbviz.filterByCategory(category);
-    G.nbviz.onDataChange();
+    this.onDataChange();
   }
 
   genderSelect(ev: any): void {
@@ -101,14 +106,14 @@ export class MenuComponent implements OnInit {
     } else {
       G.nbviz.genderDim.filter(gender);
     }
-    G.nbviz.onDataChange();
+    this.onDataChange();
   }
 
   metricRadio(ev: any): void {
     const val = ev.target.value;
     // noinspection TsLint
     G.nbviz.valuePerCapita = parseInt(val);
-    G.nbviz.onDataChange();
+    this.onDataChange();
   }
 
   countrySelect(ev: any): void {
@@ -124,7 +129,49 @@ export class MenuComponent implements OnInit {
     } else {
       countries = [country];
     }
+
     G.nbviz.filterByCountries(countries);
-    G.nbviz.onDataChange();
+    this.onDataChange();
   }
+
+  onDataChange(): void {
+    console.log('onDataChange');
+    let data = this.getCountryData();
+    console.log(data);
+    console.log('onDataChange');
+    G.nbviz.graphmainComponent.barGraph.updateBarChart(data);
+    G.nbviz.graphmainComponent.d3Map.updateMap(data);
+    G.nbviz.graphmainComponent.nobelList.updateList(G.nbviz.countryDim.top(Infinity));
+
+    data = G.nbviz.nestDataByYear(G.nbviz.countryDim.top(Infinity));
+    G.nbviz.graphmainComponent.nobelTime.updateTimeChart(data);
+    }
+
+    getCountryData() {
+        const countryGroups = G.nbviz.countryDim.group().all();
+        // make main data-ball
+        const data = countryGroups.map( function(c) {
+          let cData = G.nbviz.data.countryData[c.key];
+
+          if(cData){
+            let value = c.value;
+            // if per-capita value then divide by pop. size
+            if (G.nbviz.valuePerCapita) {
+                value /= cData.population;
+            }
+
+            return {
+                key: c.key,
+                value: value,
+                code: cData.alpha3Code,
+                // population: cData.population
+            };
+            }
+
+        }).sort(function(a, b) {
+                return b.value - a.value; // descending
+            });
+
+        return data;
+    }
 }

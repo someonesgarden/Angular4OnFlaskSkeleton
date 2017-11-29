@@ -13,7 +13,7 @@ export class D3Component implements OnInit {
   query: any;
 
   constructor() {
-    this.initMongoServer();
+    // this.initMongoServer();
   }
 
   initMongoServer() {
@@ -60,7 +60,7 @@ export class D3Component implements OnInit {
 
   ngOnInit() {
     // this.sampleGraph();
-    this.displayJSON(this.query);
+    // this.displayJSON(this.query);
   }
 
   onvoted(ev): void {

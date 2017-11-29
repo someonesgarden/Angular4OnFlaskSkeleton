@@ -38,8 +38,7 @@ def clean_data(df):
     df = df.replace('', np.nan)
     df = df.replace('\n', np.nan)
     df_born_in = df[df.born_in.notnull()]
-
-    # df = df.where((pd.notnull(df)), None)
+    df = df.where((pd.notnull(df)), None)
 
     df.name = df.name.str.replace('*', '')
     df.name = df.name.str.strip()
@@ -71,7 +70,6 @@ def clean_data(df):
 df_clean, df_born_in = clean_data(df)
 dataframe_to_mongo(df_clean, 'nobel_prize', 'winners')
 dataframe_to_mongo(df_born_in, 'nobel_prize', 'winners_born_in')
-
 
 # 4)Mini-BIosもJSONからMONGODBに保存
 df_winner_bios = pd.read_json(open(rootdir+'/app/static/data/minibios.json'))
