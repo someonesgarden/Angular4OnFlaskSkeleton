@@ -20,7 +20,6 @@ export class GraphmainComponent implements OnInit{
   nobelList: NobelList;
   nobelTime: NobelTime;
 
-
   constructor() {
   }
 

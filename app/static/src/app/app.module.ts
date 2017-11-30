@@ -10,7 +10,6 @@ import { HttpModule } from '@angular/http'; // HTTPクライアント機能
 
 // Custom Modules
 
-import {CoopModule} from './coop/coop.module';
 import { ChildComponent } from './components/child/child.component';
 import { D3graphComponent } from './d3graph/d3graph.component';
 import { D3Service } from 'd3-ng2-service';
@@ -37,7 +36,6 @@ import { GraphmainComponent } from './graphmain/graphmain.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    CoopModule,
     BrowserAnimationsModule,
     HttpModule
   ],

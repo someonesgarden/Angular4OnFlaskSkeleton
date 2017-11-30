@@ -8,15 +8,15 @@ export let env = {
     $EVE_API : 'http://localhost:5000/api/'
 };
 
-// export const query_winners = 'winners?projection=' + JSON.stringify( {'mini_bio': 0, 'bio_image': 0});
-export const query_winners = 'winners?projection=' + JSON.stringify( {'mini_bio':0});
-// export const query_winners = 'winners?where=' + JSON.stringify({'country': 'Hong Kong'});
-// export const query_winners = 'winners';
-
-// export const query_winners = 'winners?where=' + JSON.stringify({'name': 'Frédéric Mistral'});
 
 
 export let nbviz = {
+  // query_winners : 'winners?projection=' + JSON.stringify( {'mini_bio': 0, 'bio_image': 0}),
+  // query_winners : 'winners?projection=' + JSON.stringify( {'mini_bio':0}),
+  // query_winners : 'winners?where=' + JSON.stringify({'country': 'Hong Kong'}),
+  // query_winners : 'winners',
+  // query_winners : 'winners?where=' + JSON.stringify({'name': 'Frédéric Mistral'}),
+  query_winners : 'winners?projection=' + JSON.stringify( {'mini_bio':0}),
   ALL_CATS  : 'All Categories',
   CATEGORIES : [ 'Chemistry', 'Economics', 'Literature', 'Peace', 'Physics', 'Physiology or Medicine' ],
   COUNTRIES : [ 'All Countries', 'Single Winning Countries', 'Double Winning Countries' ],
@@ -36,9 +36,9 @@ export let nbviz = {
   genderDim : null,
   countrySelectGroups : null,
 
-  rootComponent: null,
-  menuComponent : null,
-  graphmainComponent : null,
+  rootComp: null,
+  menuComp : null,
+  graphComp : null,
 
   MAX_CENTROID_RADIUS : 30,
   MIN_CENTROID_RADIUS : 2,
@@ -87,16 +87,21 @@ export let nbviz = {
     }
   },
 
-  categoryFill : function(category):any{
-        var i = nbviz.CATEGORIES.indexOf(category);
-        return d3.hcl(i / nbviz.CATEGORIES.length * 360, 60, 70);
+  categoryFill: function (category): any {
+    var i = nbviz.CATEGORIES.indexOf(category);
+    return d3.hcl(i / nbviz.CATEGORIES.length * 360, 60, 70);
   },
 
-  nestDataByYear : function(entries):any {
-        return nbviz.data.years = d3.nest()
-            .key(function(w:any) {
-                return w.year;
-            })
-            .entries(entries);
-    }
+  nestDataByYear: function (entries): any {
+    return nbviz.data.years = d3.nest()
+      .key(function (w: any) {
+        return w.year;
+      })
+      .entries(entries);
+  }
+};
+
+
+export let common = {
+
 };

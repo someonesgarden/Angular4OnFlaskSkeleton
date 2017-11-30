@@ -43,7 +43,7 @@ export class NobelList{
 
     displayWinner(_wData): void {
 
-        G.nbviz.rootComponent.getDataFromAPI('winners/' + _wData._id, (error, wData)=> {
+        this.getDataFromAPI('winners/' + _wData._id, (error, wData)=> {
 
             var nw = d3.select('#nobel-winner');
 
@@ -61,7 +61,6 @@ export class NobelList{
                 nw.select('#picbox img')
                     .attr('src', 'static/images/winners/' + wData.bio_image)
                     .style('display', 'inline');
-
             }
             else{
                 nw.select('#picbox img').style('display', 'none');
@@ -71,7 +70,20 @@ export class NobelList{
         });
     };
 
+      // $EVE.API
+    getDataFromAPI(resource, callback) {
+      console.log('getDataFromAPI:', G.env.$EVE_API + resource);
+      d3.json(G.env.$EVE_API + resource, function (error, data: any) {
+        if (error) {
+          console.log('error');
+          return callback(error);
+        }
 
-
-
+        if ('_items' in data) {
+          callback(null, data._items);
+        } else {
+          callback(null, data);
+        }
+      });
+    }
 }

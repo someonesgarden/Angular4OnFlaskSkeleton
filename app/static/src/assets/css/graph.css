@@ -10,12 +10,12 @@
 }
 
 #nobel-time{
-  background: #b2b99d;
-    min-height:160px;
+  background: #eaeacc;
+  min-height:160px;
 }
 
 #nobel-map{
-    height:340px;
+    height:600px;
 }
 
 #nobel-winner{
@@ -91,14 +91,6 @@
 
 .labels text { font-size:11px; }
 
-/* MENU-BAR */
-#nobel-menu div{display:inline-block}
-#cat-select{}
-#gender-select{margin-left:20px;}
-#country-select{margin:0 20px}
-#metric-radio{left:500px;}
-#metric-radio form{display:inline}
-#nobel-menu option{font-size:12px}
 
 /* WINNERS LIST */
 #nobel-list{

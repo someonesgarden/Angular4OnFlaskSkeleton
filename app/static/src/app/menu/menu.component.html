@@ -1,68 +1,69 @@
 <div *ngIf="menu_show" class="ui stackable inverted menu">
-  <div class="header item">NOOCRACYNOW</div>
-  <a class="active item" (click)="gotoLink($event, 'http://yahoo.co.jp')">About</a>
- <div class="ui dropdown item">
-    Menu
-    <i class="dropdown icon"></i>
-    <div class="menu">
-      <a class="item" (click)="commuAction($event)">Electronics</a>
-      <a class="item" (click)="gotoLink($event, 'http://yahoo.co.jp')">Automotive</a>
-    </div>
-  </div>
-
-  <div class="right menu">
-
-      <div class="item" id="cat-select">
-          <select class="ui fluid dropdown" (change)="catSelect($event)">
-              <option *ngFor="let cat of catList" value="{{cat}}">{{ cat }}</option>
-          </select>
+    <div class="header item">NOOCRACYNOW</div>
+    <a class="active item" (click)="gotoLink($event, 'http://yahoo.co.jp')">About</a>
+    <div class="ui dropdown item">
+        Menu
+        <i class="dropdown icon"></i>
+        <div class="menu">
+            <a class="item" (click)="commuAction($event)">LINK1</a>
+            <a class="item" (click)="gotoLink($event, 'http://yahoo.co.jp')">LINK2</a>
         </div>
-
-      <div class="item" id="gender-select">
-          <select class="ui fluid dropdown" (change)="genderSelect($event)">
-            <option value="All">F/M</option>
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-          </select>
-        </div>
-
-       <div class="item" id="country-select">
-          <select class="ui fluid dropdown" (change)="countrySelect($event)">
-              <option value="">Country</option>
-              <option value="{{ cou }}" *ngFor="let cou of selectData">{{ cou }}</option>
-          </select>
-        </div>
-
-      <div class="item grouped fields" id='metric-radio' style="color:white;min-width:120px;" (change)="metricRadio($event)">
-          <div class="field">
-         <div class="ui radio checkbox">
-             <div class="inline fields">
-                  <input type="radio" name="mode" checked="" tabindex="0" value="0">
-                  <label style="color:white;">absolute</label>
-              </div>
-         </div>
-              <div class="field">
-           <div class="ui radio checkbox">
-                  <input type="radio" name="mode" tabindex="0" value="1">
-                  <label style="color:white;">per-capita</label>
-              </div>
-         </div>
-          </div>
-      </div>
-
-    <div class="item">
-      <div class="ui action left icon input">
-        <i class="search icon"></i>
-        <input type="text" placeholder="Search" [(ngModel)]="searthtxt" (ngModelChange)="searthtxt=$event">
-        <button class="ui button" (click)="submitSearch(searthtxt)">Submit</button>
-      </div>
     </div>
 
-  </div>
+    <div class="right menu">
+
+        <div class="item" id="cat-select">
+            <select class="ui fluid dropdown" (change)="catSelect($event)">
+                <option *ngFor="let cat of catList" value="{{ cat }}" [selected]="cat === 'All Categories'">{{ cat }}</option>
+            </select>
+        </div>
+
+        <div class="item" id="gender-select">
+            <select class="ui fluid dropdown" (change)="genderSelect($event)" >
+                <option value="All" selected>F/M</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </select>
+        </div>
+
+        <div class="item" id="country-select">
+            <select class="ui fluid dropdown" (change)="countrySelect($event)">
+                <option value="">Country</option>
+                <option value="{{ cou }}" *ngFor="let cou of selectData"  [selected]="cou === 'All Countries'">{{ cou }}</option>
+            </select>
+        </div>
+
+        <div class="item grouped fields" id="metric-radio" style="color:white;min-width:120px;" (change)="metricRadio($event)">
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <div class="inline fields">
+                        <input type="radio" name="mode"  tabindex="0" value="0">
+                        <label style="color:white;">absolute</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="mode" checked tabindex="0" value="1">
+                        <label style="color:white;">per-capita</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="ui action left icon input">
+                <i class="search icon"></i>
+                <input type="text" placeholder="Search" [(ngModel)]="searthtxt" (ngModelChange)="searthtxt=$event">
+                <button class="ui button" (click)="submitSearch(searthtxt)">Submit</button>
+            </div>
+        </div>
+
+    </div>
 </div>
 
-<div class="ui grid">
-        <div class="ui toggle checkbox sixteen wide column" style="float:right;" (click)="dropdownOpen($event)">
-          <input type="checkbox" id="menu_toggle" name="menu_toggle" [(ngModel)]="menu_show"><label>Show/Hide Menu</label>
-  </div></div>
+<!--div class="ui grid">
+    <div class="ui toggle checkbox sixteen wide column" style="float:right;" (click)="dropdownOpen($event)">
+        <input type="checkbox" id="menu_toggle" name="menu_toggle" [(ngModel)]="menu_show"><label>Show/Hide Menu</label>
+    </div>
+</div-->
 

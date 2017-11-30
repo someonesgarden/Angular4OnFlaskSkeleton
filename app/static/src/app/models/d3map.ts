@@ -16,9 +16,6 @@ export class D3Map {
 
 
   init(): void {
-    var defaultMapWidth = 960,
-      defaultMapHeight = 480;
-
     // DIMENSIONS AND SVG
     this.map_dom = d3.select('#nobel-map');
     this.tooltip = d3.select('#map-tooltip');
@@ -97,9 +94,10 @@ export class D3Map {
     });
 
     this.cnameToCountry = {};
-    names.forEach((n)=>{
+    names.forEach((n) => {
       this.cnameToCountry[n.name] = idToCountry[n.id];
     });
+
 
     // MAIN WORLD MAP
     this.svg.insert("path", ".graticule")
@@ -127,111 +125,112 @@ export class D3Map {
 
   updateMap(countryData): void {
 
-        var that = this;
-        var mapData = G.nbviz.data.mapData = countryData
-            .filter((d:any)=> {
-                if(d){
-                        return d.value > 0;
-                }else{
-                        return false;
-                }
-            })
-            .map((d:any)=>{
-                return {
-                    geo: this.cnameToCountry[d.key],
-                    name: d.key,
-                    number: d.value
-                };
-            });
+    console.log('updateMap');
+    console.log(countryData);
 
-        var maxWinners = d3.max(mapData.map((d:any)=> {
-            return d.number;
-        }));
-        // DOMAIN OF VALUE-INDINCATOR SCALE
-        this.radiusScale.domain([0, maxWinners]);
+    var that = this;
 
-        var countries = this.svg.select('.countries').selectAll('.country')
-            .data(mapData, (d:any)=> {
-                return d.name;
-            });
+    var mapData = G.nbviz.data.mapData = countryData
+      .filter((d: any) => {
+        if (d) {
+          return d.value > 0;
+        } else {
+          return false;
+        }
+      })
+      .map((d: any) => {
+        return {
+          geo: this.cnameToCountry[d.key],
+          name: d.key,
+          number: d.value
+        };
+      });
 
-        var that = this;
+    var maxWinners = d3.max(mapData.map((d: any) => {
+      return d.number;
+    }));
 
-        countries.enter()
-            .append('path')
-            .attr('class', 'country')
-            .on('mouseenter', function(d) {
-                // console.log('Entered ' + d.name);
-                var country = d3.select(this);
-                if(!country.classed('visible')){ return; }
+    // DOMAIN OF VALUE-INDINCATOR SCALE
+    this.radiusScale.domain([0, maxWinners]);
 
-                var mouseCoords = d3.mouse(this);
-                var cData: any = country.datum();
-                var prize_string = (cData.number === 1)?' prize in ': ' prizes in ';
-                that.tooltip.select('h2').text(cData.name);
-                that.tooltip.select('p').text(cData.number + prize_string + G.nbviz.activeCategory);
-                var borderColor = (G.nbviz.activeCategory === G.nbviz.ALL_CATS)? 'goldenrod':G.nbviz.categoryFill(G.nbviz.activeCategory);
-                that.tooltip.style('border-color', borderColor);
-                var countryClass = cData.name.replace(/ /g, '-');
+    var countries = this.svg.select('.countries').selectAll('.country')
+      .data(mapData, (d: any) => {
+        return d.name;
+      });
 
-                var w = parseInt(that.tooltip.style('width')),
-                    h = parseInt(that.tooltip.style('height'));
-                that.tooltip.style('top', (mouseCoords[1]) - h + 'px');
-                that.tooltip.style('left', (mouseCoords[0] - w/2) + 'px');
 
-                d3.select(this).classed('active', true);
+    countries.enter()
+      .append('path')
+      .attr('class', 'country')
+      .on('mouseenter', function (d) {
+        // console.log('Entered ' + d.name);
+        var country = d3.select(this);
+        if (!country.classed('visible')) {
+          return;
+        }
 
-            })
-            .on('mouseout', function(d) {
-                // console.log('Left ' + d.name);
-                that.tooltip.style('left', '-9999px');
-                d3.select(this).classed('active', false);
-            })
+        var mouseCoords = d3.mouse(this);
+        var cData: any = country.datum();
+        var prize_string = (cData.number === 1) ? ' prize in ' : ' prizes in ';
+        that.tooltip.select('h2').text(cData.name);
+        that.tooltip.select('p').text(cData.number + prize_string + G.nbviz.activeCategory);
+        var borderColor = (G.nbviz.activeCategory === G.nbviz.ALL_CATS) ? 'goldenrod' : G.nbviz.categoryFill(G.nbviz.activeCategory);
+        that.tooltip.style('border-color', borderColor);
+        var countryClass = cData.name.replace(/ /g, '-');
 
-        countries
-            .attr('name', function(d) {
-                return d.name;
-            })
-            .classed('visible', true)
-            .transition().duration(G.nbviz.TRANS_DURATION)
-            .style('opacity', 1)
-            .attr('d', (d)=> {
-                return that.path(d.geo);
-            });
+        var w = parseInt(that.tooltip.style('width')),
+          h = parseInt(that.tooltip.style('height'));
+        that.tooltip.style('top', (mouseCoords[1]) - h + 'px');
+        that.tooltip.style('left', (mouseCoords[0] - w / 2) + 'px');
 
-        countries.exit()
-            .classed('visible', false)
-            .transition().duration(G.nbviz.TRANS_DURATION)
-            .style('opacity', 0);
+        d3.select(this).classed('active', true);
+      })
+      .on('mouseout', function (d) {
+        that.tooltip.style('left', '-9999px');
+        d3.select(this).classed('active', false);
+      });
 
-        var centroids = this.svg.select('.centroids').selectAll(".centroid")
-            .data(mapData, function(d) {
-                return d.name;
-            });
+    countries
+      .attr('name', function (d) {
+        return d.name;
+      })
+      .classed('visible', true)
+      .transition().duration(G.nbviz.TRANS_DURATION)
+      .style('opacity', 1)
+      .attr('d', (d) => {
+        return that.path(d.geo);
+      });
 
-        centroids.enter().append('circle')
-            .attr("class", "centroid");
+    countries.exit()
+      .classed('visible', false)
+      .transition().duration(G.nbviz.TRANS_DURATION)
+      .style('opacity', 0);
 
-        centroids.attr("name", (d)=> {
-            return d.name;
-        })
-            .attr("cx",(d)=> {
-                return this.getCentroid(d)[0];
-            })
-            .attr("cy", (d)=> {
-                return this.getCentroid(d)[1];
-            })
-            .classed('active', function(d) {
-                return d.name === G.nbviz.activeCountry;
-            })
-            .transition().duration(G.nbviz.TRANS_DURATION)
-            .style('opacity', 1)
-            .attr("r", (d)=> {
-                return this.radiusScale(+d.number);
-            });
+    var centroids = this.svg.select('.centroids').selectAll(".centroid")
+      .data(mapData, function (d) {
+        return d.name;
+      });
 
-        centroids.exit()
-            .style('opacity', 0);
+    centroids.enter().append('circle').attr("class", "centroid");
+    centroids.attr("name", (d) => {
+      return d.name;
+    })
+      .attr("cx", (d) => {
+        return this.getCentroid(d)[0];
+      })
+      .attr("cy", (d) => {
+        return this.getCentroid(d)[1];
+      })
+      .classed('active', function (d) {
+        return d.name === G.nbviz.activeCountry;
+      })
+      .transition().duration(G.nbviz.TRANS_DURATION)
+      .style('opacity', 1)
+      .attr("r", (d) => {
+        return this.radiusScale(+d.number);
+      });
 
-    };
+    centroids.exit().style('opacity', 0);
+
+  };
 }

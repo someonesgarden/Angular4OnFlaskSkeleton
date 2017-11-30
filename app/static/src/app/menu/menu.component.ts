@@ -1,7 +1,6 @@
 ///<reference path="../../../node_modules/@types/d3-selection/index.d.ts"/>
 import {Component, OnInit, AfterViewInit, ElementRef} from '@angular/core';
 import {Input, Output, EventEmitter} from '@angular/core';
-import {ViewChildren, QueryList} from '@angular/core';
 import * as d3 from 'd3';
 import * as G from '../../globals';
 declare var jQuery: any;
@@ -26,6 +25,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
     this.catList = [G.nbviz.ALL_CATS].concat(G.nbviz.CATEGORIES);
   }
 
+  //--- Component LifeCycle ----------------------------
   ngOnInit() {
     setTimeout(function () {
       jQuery('.ui.dropdown').dropdown();
@@ -37,6 +37,8 @@ export class MenuComponent implements OnInit, AfterViewInit {
 
   }
 
+
+  //-- Functions ----------------------------------------
   initMenu() {
     console.log('MENU:menuInit');
     const nats = G.nbviz.countrySelectGroups = G.nbviz.countryDim.group().all()
@@ -58,8 +60,9 @@ export class MenuComponent implements OnInit, AfterViewInit {
       G.nbviz.DOUBLE_WINNERS,
       G.nbviz.SINGLE_WINNERS
     );
-  }
 
+    this.onDataChange();
+  }
 
   gotoLink(e: any, addr: string): void {
     console.log(e);
@@ -137,15 +140,15 @@ export class MenuComponent implements OnInit, AfterViewInit {
   onDataChange(): void {
     console.log('onDataChange');
     let data = this.getCountryData();
-    console.log(data);
-    console.log('onDataChange');
-    G.nbviz.graphmainComponent.barGraph.updateBarChart(data);
-    G.nbviz.graphmainComponent.d3Map.updateMap(data);
-    G.nbviz.graphmainComponent.nobelList.updateList(G.nbviz.countryDim.top(Infinity));
+
+    G.nbviz.graphComp.barGraph.updateBarChart(data);
+    G.nbviz.graphComp.d3Map.updateMap(data);
+    G.nbviz.graphComp.nobelList.updateList(G.nbviz.countryDim.top(Infinity));
 
     data = G.nbviz.nestDataByYear(G.nbviz.countryDim.top(Infinity));
-    G.nbviz.graphmainComponent.nobelTime.updateTimeChart(data);
+    G.nbviz.graphComp.nobelTime.updateTimeChart(data);
     }
+
 
     getCountryData() {
         const countryGroups = G.nbviz.countryDim.group().all();
