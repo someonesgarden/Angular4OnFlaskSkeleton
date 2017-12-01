@@ -15,7 +15,9 @@ export class GraphmainComponent implements OnInit{
   constructor(
     private d3mapservice: D3mapService,
     private timegraphservice: TimegraphService,
-    private bargraphservice: BargraphService) {
+    private bargraphservice: BargraphService
+  ) {
+
   }
 
   ngOnInit() {

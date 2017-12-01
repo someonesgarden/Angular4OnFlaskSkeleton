@@ -23,6 +23,12 @@ import {ListService} from './services/list.service';
 import {D3mapService} from './services/d3map.service';
 import {TimegraphService} from "./services/timegraph.service";
 import {BargraphService} from "./services/bargraph.service";
+import {FirebaseService} from "./services/firebase.service";
+//Firebase
+import {AngularFireModule} from 'angularfire2';
+import { AngularFireDatabaseModule} from "angularfire2/database";
+import {AngularFireAuthModule} from "angularfire2/auth";
+import {FIREBASE_CONFIG} from './app-firebase.config';
 
 
 @NgModule({
@@ -43,14 +49,18 @@ import {BargraphService} from "./services/bargraph.service";
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpModule
+    HttpModule,
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [
     D3Service,
     ListService,
     D3mapService,
     TimegraphService,
-    BargraphService
+    BargraphService,
+    FirebaseService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

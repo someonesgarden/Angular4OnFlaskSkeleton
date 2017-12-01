@@ -47,9 +47,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void{
-
   }
-
 
   //-- Functions ----------------------------------------
   initMenu() {
@@ -74,6 +72,11 @@ export class MenuComponent implements OnInit, AfterViewInit {
       G.nbviz.SINGLE_WINNERS
     );
 
+    this.onDataChange();
+  }
+
+  initMapFromMenu(world, names): void {
+    this.d3mapservice.initMap(world, names);
     this.onDataChange();
   }
 
@@ -153,10 +156,9 @@ export class MenuComponent implements OnInit, AfterViewInit {
   onDataChange(): void {
     console.log('onDataChange');
     let data = this.getCountryData();
-
-
     this.bargraphservice.updateBarChart(data);
     this.d3mapservice.updateMap(data);
+
     this.listservice.updateList(G.nbviz.countryDim.top(Infinity));
     data = G.nbviz.nestDataByYear(G.nbviz.countryDim.top(Infinity));
     this.timegraphservice.updateTimeChart(data);

@@ -12,13 +12,14 @@ import {
 import {DomSanitizer} from '@angular/platform-browser';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
+// Components
 import {MenuComponent} from './menu/menu.component';
 import {GraphmainComponent} from './graphmain/graphmain.component';
 import * as G from '../globals';
 import * as d3 from 'd3';
-//services
-import {D3mapService} from './services/d3map.service';
 
+// Services
+import {FirebaseService} from "./services/firebase.service";
 
 const headers = new Headers({'Accept': 'application/json'}); // python Eveからmongo読み込み時にJSONに。
 const options = new RequestOptions({headers: headers});
@@ -30,7 +31,17 @@ const options = new RequestOptions({headers: headers});
   styleUrls: ['./app.component.css'],
   animations: []
 })
-export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
+export class AppComponent implements
+  OnChanges,
+  OnInit,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy {
+
+  user = null;
 
   q = d3.queue();
 
@@ -40,23 +51,29 @@ export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentIni
   constructor(
     private sanitizer: DomSanitizer,
     private http: Http,
-    private d3mapservice: D3mapService
+    private firebaseservice: FirebaseService
   ) {
     this.loadJsonData();
   }
 
-
-  //--------------------------- Component LifeCycle
+  //---- Component LifeCycle --------------------------
   ngOnChanges(): void {
     // console.log('ngOnChanges');
   }
 
   ngOnInit(): void {
-    // console.log('ngOnInit');
+    // this.firebaseservice.getAuthState().subscribe(
+    //   function(user){
+    //     this.user = user;
+    //     console.log("firebase.user=",this.user);
+    //   }
+    // );
+
   }
 
   ngDoCheck(): void {
     // console.log('ngDoCheck');
+
   }
 
   ngAfterContentInit(): void {
@@ -72,7 +89,6 @@ export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentIni
      G.nbviz.rootComp = this;
      G.nbviz.menuComp = this.menus.first;
      G.nbviz.graphComp = this.graphmains.first;
-     G.nbviz.d3mapService = this.d3mapservice;
   }
 
   ngAfterViewChecked(): void {
@@ -83,12 +99,8 @@ export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentIni
     //  console.log('ngOnDestroy');
   }
 
-
-  // ---------------- Functions -------------------
-
-
+  // ----- Functions ----------------------------------
   loadJsonData(): void {
-
     this.httpGetJSON(G.env.$EVE_API + G.nbviz.query_winners).subscribe(
       (data) => {
 
@@ -98,6 +110,9 @@ export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentIni
         else {
           G.nbviz.data.winnersData = data;
         }
+
+         this.firebaseservice.jason_to_firebase(G.nbviz.data.winnersData);
+
         this.q.defer(d3.json, '/assets/data/world-110m.json');
         this.q.defer(d3.csv, '/assets/data/world-country-names-nobel.csv');
         this.q.defer(d3.json, '/assets/data/winning_country_data.json');
@@ -115,19 +130,20 @@ export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentIni
     console.log('onchange');
   }
 
-
   ready(error, worldMap, countryNames, countryData): void {
+
+
+
+
     console.log('ready');
     // LOG ANY ERROR TO CONSOLE
     if (error) {
       return console.warn(error);
     }
-
-    G.nbviz.data.countryData = countryData; // STORE OUR COUNTRY-DATA DATASET
-    G.nbviz.makeFilterAndDimensions(); // MAKE OUR FILTER AND ITS DIMENSIONS
+    G.nbviz.data.countryData = countryData;
+    G.nbviz.makeFilterAndDimensions();
     G.nbviz.menuComp.initMenu();
-    G.nbviz.d3mapService.initMap(worldMap, countryNames);
-
+    G.nbviz.menuComp.initMapFromMenu(worldMap, countryNames);
     G.nbviz.filterByCountries([]);
     G.nbviz.menuComp.onDataChange();
   }

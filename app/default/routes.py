@@ -3,7 +3,6 @@
 
 from . import default
 from flask import Flask, request, render_template, url_for, jsonify
-
 import sys
 import os
 rootdir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
@@ -11,8 +10,9 @@ sys.path.append(rootdir)
 import pandas as pd
 from bson.json_util import dumps
 from app.models.mongofunc import get_mongo_database
-
 db = get_mongo_database('nobel_prize')
+
+import app.services.pyrebase_db as pys
 
 
 @default.route('/')

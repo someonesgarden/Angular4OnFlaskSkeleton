@@ -1,6 +1,7 @@
 .idea
 *.pyc
 __pycache__
+config.py
 data/
 app/models/
 app/static/node_modules/
@@ -12,3 +13,4 @@ app/models/sql.py
 scrapy/nobel_winners/.scrapy/
 .ipynb_checkpoints/
 app/static/src/assets/web-animations-js-dev/test/web-platform-tests/
+app/static/src/app/app-firebase.config.ts

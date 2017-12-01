@@ -17,9 +17,7 @@ export class D3mapService {
   radiusScale: any;
   MANUAL_CENTROIDS: any;
 
-
   constructor() { }
-
 
   init(): void {
     // DIMENSIONS AND SVG

@@ -5,7 +5,7 @@ import * as G from '../../globals';
 @Injectable()
 export class BargraphService {
 
-    svg: any;
+  svg: any;
   dom: any;
   width: number;
   height: number;
@@ -96,10 +96,10 @@ export class BargraphService {
       .transition().duration(G.nbviz.TRANS_DURATION)
       .call(this.yAxis);
 
-    var yLabel = this.svg.select('#y-axis-label');
+    let yLabel = this.svg.select('#y-axis-label');
     yLabel.text("Number of winners");
 
-    var bars = this.svg.selectAll(".bar")
+    let bars = this.svg.selectAll(".bar")
       .data(data, function (d) {
         return d.code;
       });

@@ -8,8 +8,6 @@ export let env = {
     $EVE_API : 'http://localhost:5000/api/'
 };
 
-
-
 export let nbviz = {
   // query_winners : 'winners?projection=' + JSON.stringify( {'mini_bio': 0, 'bio_image': 0}),
   // query_winners : 'winners?projection=' + JSON.stringify( {'mini_bio':0}),
@@ -39,7 +37,6 @@ export let nbviz = {
   rootComp: null,
   menuComp : null,
   graphComp : null,
-  d3mapService : null,
 
   MAX_CENTROID_RADIUS : 30,
   MIN_CENTROID_RADIUS : 2,
