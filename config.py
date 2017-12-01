@@ -45,8 +45,3 @@ config = {
     'default': DevelopmentConfig
 }
 
-
-class PyrebaseConfig:
-    config = {
-
-    }

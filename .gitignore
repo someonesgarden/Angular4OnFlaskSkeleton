@@ -1,7 +1,7 @@
 .idea
 *.pyc
 __pycache__
-config.py
+firebase_config.py
 data/
 app/models/
 app/static/node_modules/
