@@ -39,6 +39,7 @@ export let nbviz = {
   rootComp: null,
   menuComp : null,
   graphComp : null,
+  d3mapService : null,
 
   MAX_CENTROID_RADIUS : 30,
   MIN_CENTROID_RADIUS : 2,
@@ -87,6 +88,7 @@ export let nbviz = {
     }
   },
 
+  // Return specific color for each Category
   categoryFill: function (category): any {
     var i = nbviz.CATEGORIES.indexOf(category);
     return d3.hcl(i / nbviz.CATEGORIES.length * 360, 60, 70);

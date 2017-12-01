@@ -1,3 +1,17 @@
+# Database
+### Mongo / Firebase
+ローカル内に設置したmongoDBをEVEサーバーで読み出しているが、
+外部のFireBaseサーバーを使用する方法に移行中。
+
+Angular2でFirebaseを利用するステップ：
+1)angularfire2とfirebaseをインストール
+
+次のリンクを参照。
+[https://html5experts.jp/frontainer/19689/]
+
+`npm install angularfire2 firebase --save`
+
+
 # Static
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.0.

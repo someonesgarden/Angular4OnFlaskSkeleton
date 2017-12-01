@@ -16,6 +16,9 @@ import {MenuComponent} from './menu/menu.component';
 import {GraphmainComponent} from './graphmain/graphmain.component';
 import * as G from '../globals';
 import * as d3 from 'd3';
+//services
+import {D3mapService} from './services/d3map.service';
+
 
 const headers = new Headers({'Accept': 'application/json'}); // python Eveからmongo読み込み時にJSONに。
 const options = new RequestOptions({headers: headers});
@@ -34,11 +37,12 @@ export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentIni
   @ViewChildren(MenuComponent) menus: QueryList<MenuComponent>;
   @ViewChildren(GraphmainComponent) graphmains: QueryList<GraphmainComponent>;
 
-
-  constructor(private sanitizer: DomSanitizer, private http: Http) {
-
+  constructor(
+    private sanitizer: DomSanitizer,
+    private http: Http,
+    private d3mapservice: D3mapService
+  ) {
     this.loadJsonData();
-
   }
 
 
@@ -68,6 +72,7 @@ export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentIni
      G.nbviz.rootComp = this;
      G.nbviz.menuComp = this.menus.first;
      G.nbviz.graphComp = this.graphmains.first;
+     G.nbviz.d3mapService = this.d3mapservice;
   }
 
   ngAfterViewChecked(): void {
@@ -110,6 +115,7 @@ export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentIni
     console.log('onchange');
   }
 
+
   ready(error, worldMap, countryNames, countryData): void {
     console.log('ready');
     // LOG ANY ERROR TO CONSOLE
@@ -120,7 +126,8 @@ export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentIni
     G.nbviz.data.countryData = countryData; // STORE OUR COUNTRY-DATA DATASET
     G.nbviz.makeFilterAndDimensions(); // MAKE OUR FILTER AND ITS DIMENSIONS
     G.nbviz.menuComp.initMenu();
-    G.nbviz.graphComp.d3Map.initMap(worldMap, countryNames); // INITIALIZE MAP
+    G.nbviz.d3mapService.initMap(worldMap, countryNames);
+
     G.nbviz.filterByCountries([]);
     G.nbviz.menuComp.onDataChange();
   }

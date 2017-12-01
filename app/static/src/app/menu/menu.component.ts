@@ -1,8 +1,14 @@
 ///<reference path="../../../node_modules/@types/d3-selection/index.d.ts"/>
 import {Component, OnInit, AfterViewInit, ElementRef} from '@angular/core';
 import {Input, Output, EventEmitter} from '@angular/core';
-import * as d3 from 'd3';
+//Services
+import {ListService} from '../services/list.service';
+import {D3mapService} from '../services/d3map.service';
+import {TimegraphService} from "../services/timegraph.service";
+import {BargraphService} from "../services/bargraph.service";
+// Commons
 import * as G from '../../globals';
+// Declare
 declare var jQuery: any;
 
 
@@ -21,9 +27,16 @@ export class MenuComponent implements OnInit, AfterViewInit {
   selectData = null;
   graphmainComp = null;
 
-  constructor(private elementRef: ElementRef) {
+  constructor(
+    private elementRef: ElementRef,
+    private listservice: ListService,
+    private d3mapservice: D3mapService,
+    private timegraphservice: TimegraphService,
+    private bargraphservice: BargraphService
+  ) {
     this.catList = [G.nbviz.ALL_CATS].concat(G.nbviz.CATEGORIES);
   }
+
 
   //--- Component LifeCycle ----------------------------
   ngOnInit() {
@@ -141,12 +154,12 @@ export class MenuComponent implements OnInit, AfterViewInit {
     console.log('onDataChange');
     let data = this.getCountryData();
 
-    G.nbviz.graphComp.barGraph.updateBarChart(data);
-    G.nbviz.graphComp.d3Map.updateMap(data);
-    G.nbviz.graphComp.nobelList.updateList(G.nbviz.countryDim.top(Infinity));
 
+    this.bargraphservice.updateBarChart(data);
+    this.d3mapservice.updateMap(data);
+    this.listservice.updateList(G.nbviz.countryDim.top(Infinity));
     data = G.nbviz.nestDataByYear(G.nbviz.countryDim.top(Infinity));
-    G.nbviz.graphComp.nobelTime.updateTimeChart(data);
+    this.timegraphservice.updateTimeChart(data);
     }
 
 

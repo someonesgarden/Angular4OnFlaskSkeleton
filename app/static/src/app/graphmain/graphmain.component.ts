@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import * as d3 from 'd3';
-import * as topojson from 'topojson';
-import * as G from '../../globals';
-import {BarGraph} from '../models/bargraph'
-import {D3Map} from '../models/d3map'
-import {NobelList} from '../models/list'
-import {NobelTime} from '../models/time'
+//Services
+import {D3mapService} from '../services/d3map.service';
+import {TimegraphService} from "../services/timegraph.service";
+import {BargraphService} from "../services/bargraph.service";
 
 
 @Component({
@@ -15,22 +12,15 @@ import {NobelTime} from '../models/time'
 })
 export class GraphmainComponent implements OnInit{
 
-  barGraph: BarGraph;
-  d3Map: D3Map;
-  nobelList: NobelList;
-  nobelTime: NobelTime;
-
-  constructor() {
+  constructor(
+    private d3mapservice: D3mapService,
+    private timegraphservice: TimegraphService,
+    private bargraphservice: BargraphService) {
   }
 
   ngOnInit() {
-    this.barGraph = new BarGraph;
-    this.d3Map = new D3Map;
-    this.nobelList = new NobelList;
-    this.nobelTime = new NobelTime;
-
-    this.barGraph.init();
-    this.d3Map.init();
-    this.nobelTime.init();
+    this.bargraphservice.init();
+    this.d3mapservice.init();
+    this.timegraphservice.init();
   }
 }

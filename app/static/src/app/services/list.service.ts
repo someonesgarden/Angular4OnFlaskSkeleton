@@ -1,9 +1,14 @@
+import { Injectable } from '@angular/core';
 import * as d3 from 'd3';
 import * as G from '../../globals';
 
-export class NobelList{
 
-    updateList(data): void {
+@Injectable()
+export class ListService {
+
+  constructor() { }
+
+   updateList(data): void {
         var rows, cells;
         // Sort the winners' data by year
         var data = data.sort(function(a, b) {
@@ -70,7 +75,7 @@ export class NobelList{
         });
     };
 
-      // $EVE.API
+      // Calling $EVE.API
     getDataFromAPI(resource, callback) {
       console.log('getDataFromAPI:', G.env.$EVE_API + resource);
       d3.json(G.env.$EVE_API + resource, function (error, data: any) {
@@ -86,4 +91,5 @@ export class NobelList{
         }
       });
     }
+
 }
