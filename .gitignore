@@ -14,3 +14,5 @@ scrapy/nobel_winners/.scrapy/
 .ipynb_checkpoints/
 app/static/src/assets/web-animations-js-dev/test/web-platform-tests/
 app/static/src/app/app-firebase.config.ts
+/app/static/src/app/app-firebase.config.ts
+/firebase_config.py
