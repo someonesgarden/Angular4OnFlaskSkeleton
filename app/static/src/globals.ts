@@ -66,22 +66,26 @@ export let nbviz = {
     if (cat !== nbviz.ALL_CATS) {
       nbviz.categoryDim.filter(cat);
     } else {
+      console.log("CLEAR:Category filter");
       nbviz.categoryDim.filter();
     }
   },
   filterByCountries : function(countryNames) {
-    console.log('filterByCountries');
-    if (countryNames.length) {
-      nbviz.countryDim.filter(function (name) {
-        return countryNames.indexOf(name) > -1;
-      });
-    } else {
+
+    if (!countryNames.length) {
+      console.log("CLEAR:country filter");
       nbviz.countryDim.filter();
     }
-    if (countryNames.length !== 1) {
-      nbviz.activeCountry = null;
+    else{
+       nbviz.countryDim.filter(function (name) {
+        return countryNames.indexOf(name) > -1;
+      });
+    }
+
+    if (countryNames.length == 1) {
+     nbviz.activeCountry = countryNames[0];
     } else {
-      nbviz.activeCountry = countryNames[0];
+       nbviz.activeCountry = null;
     }
   },
 

@@ -1,13 +1,14 @@
-///<reference path="../../../node_modules/@types/d3-selection/index.d.ts"/>
+///<reference path="../../../../node_modules/@types/d3-selection/index.d.ts"/>
 import {Component, OnInit, AfterViewInit, ElementRef} from '@angular/core';
 import {Input, Output, EventEmitter} from '@angular/core';
 //Services
-import {ListService} from '../services/list.service';
-import {D3mapService} from '../services/d3map.service';
-import {TimegraphService} from "../services/timegraph.service";
-import {BargraphService} from "../services/bargraph.service";
+import {ListService} from '../../services/list.service';
+import {D3mapService} from '../../services/d3map.service';
+import {TimegraphService} from "../../services/timegraph.service";
+import {BargraphService} from "../../services/bargraph.service";
+
 // Commons
-import * as G from '../../globals';
+import * as G from '../../../globals';
 // Declare
 declare var jQuery: any;
 
@@ -26,6 +27,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
   catList = null;
   selectData = null;
   graphmainComp = null;
+  fewWinners  = {1: [], 2: []};
 
   constructor(
     private elementRef: ElementRef,
@@ -57,11 +59,10 @@ export class MenuComponent implements OnInit, AfterViewInit {
         return b.value - a.value; // descending
       });
 
-    const fewWinners = {1: [], 2: []};
     this.selectData = [G.nbviz.ALL_WINNERS];
     nats.forEach((o) => {
       if (o.value <= 2) {
-        fewWinners[o.value].push(o.key);
+        this.fewWinners[o.value].push(o.key);
       } else {
         this.selectData.push(o.key);
       }
@@ -137,17 +138,20 @@ export class MenuComponent implements OnInit, AfterViewInit {
 
   countrySelect(ev: any): void {
     const country = ev.target.value;
-    const fewWinners = {1: [], 2: []};
+
     let countries;
     if (country === G.nbviz.ALL_WINNERS) {
       countries = [];
     } else if (country === G.nbviz.DOUBLE_WINNERS) {
-      countries = fewWinners[2];
+      countries = this.fewWinners[2];
     } else if (country === G.nbviz.SINGLE_WINNERS) {
-      countries = fewWinners[1];
+      countries = this.fewWinners[1];
     } else {
       countries = [country];
     }
+
+    console.log('contrySelect. countries=');
+    console.log(countries);
 
     G.nbviz.filterByCountries(countries);
     this.onDataChange();
@@ -160,9 +164,15 @@ export class MenuComponent implements OnInit, AfterViewInit {
     this.d3mapservice.updateMap(data);
 
     this.listservice.updateList(G.nbviz.countryDim.top(Infinity));
+
     data = G.nbviz.nestDataByYear(G.nbviz.countryDim.top(Infinity));
+
+    console.log('nested_data');
+    console.log(data);
+
     this.timegraphservice.updateTimeChart(data);
-    }
+
+  }
 
 
     getCountryData() {

@@ -2,29 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
-import { MyformComponent } from './components/myform/myform.component';
-import { ReactiveformComponent } from './components/reactiveform/reactiveform.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { NgSemanticModule } from 'ng-semantic';
 import { HttpModule } from '@angular/http'; // HTTPクライアント機能
-
+// Routing
+import {MY_ROUTES} from "./app.routing";
 // Custom Modules
-import { ChildComponent } from './components/child/child.component';
-import { D3graphComponent } from './d3graph/d3graph.component';
-import { D3Service } from 'd3-ng2-service';
-import { AframeComponent } from './aframe/aframe.component'; // <-- import statement
-import { D3Component} from './d3/d3.component';
-import { UnderscoreComponent } from './underscore/underscore.component';
-import { MenuComponent } from './menu/menu.component';
-import { GraphmainComponent } from './graphmain/graphmain.component';
-
+import { AframeComponent } from './components/aframe/aframe.component';
+import { UnderscoreComponent } from './components/underscore/underscore.component';
+import { MainComponent } from './main/main.component';
+import { MainModule} from "./main/main.module";
 // Services
-import {ListService} from './services/list.service';
-import {D3mapService} from './services/d3map.service';
-import {TimegraphService} from "./services/timegraph.service";
-import {BargraphService} from "./services/bargraph.service";
+// Firebase
 import {FirebaseService} from "./services/firebase.service";
-//Firebase
 import {AngularFireModule} from 'angularfire2';
 import { AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireAuthModule} from "angularfire2/auth";
@@ -34,17 +23,14 @@ import {FIREBASE_CONFIG} from './app-firebase.config';
 @NgModule({
   declarations: [
     AppComponent,
-    MyformComponent,
-    ReactiveformComponent,
-    ChildComponent,
-    D3graphComponent,
-    AframeComponent,
-    D3Component,
-    UnderscoreComponent,
-    MenuComponent,
-    GraphmainComponent
+    // D3graphComponent,
+    // D3Component,
+    // AframeComponent,
+    // UnderscoreComponent,
+    MainComponent
   ],
   imports: [
+    MY_ROUTES,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -52,14 +38,10 @@ import {FIREBASE_CONFIG} from './app-firebase.config';
     HttpModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MainModule
   ],
   providers: [
-    D3Service,
-    ListService,
-    D3mapService,
-    TimegraphService,
-    BargraphService,
     FirebaseService
   ],
   bootstrap: [AppComponent],

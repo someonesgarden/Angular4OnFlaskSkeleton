@@ -79,6 +79,9 @@ export class TimegraphService {
   // OUR MAIN UPDATE METHOD, CALLED BY nbviz.onDataChange in nbviz_core.js
   updateTimeChart(data): void {
 
+    console.log('updateTimeChart');
+    console.log(data);
+
     var years = this.svg.selectAll(".year")
       .data(data, function (d) {
         return d.key;
@@ -90,6 +93,7 @@ export class TimegraphService {
         return d.key;
       })
       .attr("transform", (year) => {
+        // let dx = year.key === undefined ?  0 : this.xScale(+year.key);
         return "translate(" + this.xScale(+year.key) + ",0)";
       });
 

@@ -6,18 +6,7 @@ PythonでFirebaseを使うためのServiceクラス
 """
 
 import pyrebase as pyb
-
-from config import PyrebaseConfig
-
-fbtestdata = {
-    "name": "Daisuke Nishimura"
-}
-
-
-# fbdbClass = pys.PyrebaseClass()
-# fbdbClass.init_db()
-# fbdbClass.push_data('tatta', {'test':'okoko'})
-# # fbdb = pys.init_fbdb()
+from firebase_config import PyrebaseConfig
 
 
 class PyrebaseClass:
@@ -29,5 +18,5 @@ class PyrebaseClass:
         self.fb_db = firebase.database()
 
     def push_data(self, child, data):
-        self.fb_db.child(child).push(data)
+        self.fb_db.child(child).set(data)
 

@@ -77,7 +77,7 @@ export class ListService {
 
       // Calling $EVE.API
     getDataFromAPI(resource, callback) {
-      console.log('getDataFromAPI:', G.env.$EVE_API + resource);
+      console.log('getDataFromAPI=', G.env.$EVE_API + resource);
       d3.json(G.env.$EVE_API + resource, function (error, data: any) {
         if (error) {
           console.log('error');

@@ -16,14 +16,21 @@ URL_PREFIX = 'api'
 MONGO_DBNAME = 'nobel_prize'
 DOMAIN = {'winners_all': {
     'schema': {
+        'award_age': {'type':'integer'},
+        'bio_image': {'type': 'string'},
         'country': {'type': 'string'},
         'category': {'type': 'string'},
+        'date_of_birth': {'type': 'string'},
+        'date_of_death': {'type': 'string'},
+        'place_of_birth': {'type': 'string'},
+        'place_of_death': {'type': 'string'},
+        'gender': {'type': 'string'},
         'name': {'type': 'string'},
         'year': {'type': 'integer'},
-        'gender': {'type': 'string'},
+        'text':{'type':'string'},
         'link':{'type':'string'},
         'mini_bio':{'type':'string'},
-        'bio_image':{'type':'string'}
+        'image_urls_y':{'type':'string'}
     },
 'url':'winners'
 }}

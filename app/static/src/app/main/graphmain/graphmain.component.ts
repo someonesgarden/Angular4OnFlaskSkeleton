@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 //Services
-import {D3mapService} from '../services/d3map.service';
-import {TimegraphService} from "../services/timegraph.service";
-import {BargraphService} from "../services/bargraph.service";
+import {D3mapService} from '../../services/d3map.service';
+import {TimegraphService} from "../../services/timegraph.service";
+import {BargraphService} from "../../services/bargraph.service";
 
 
 @Component({
