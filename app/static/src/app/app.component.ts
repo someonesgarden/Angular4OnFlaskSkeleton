@@ -9,6 +9,7 @@ import {
   AfterViewChecked,
   OnDestroy
 } from '@angular/core';
+declare var jQuery: any;
 
 @Component({
   selector: 'app-root',
@@ -43,6 +44,11 @@ export class AppComponent implements
 
   ngAfterContentInit(): void {
     // console.log('App:ngAfterContentInit');
+
+      jQuery('#js-sidebar').click(function() {
+        jQuery('.ui.sidebar').sidebar('toggle');
+      });
+
   }
 
   ngAfterContentChecked(): void {

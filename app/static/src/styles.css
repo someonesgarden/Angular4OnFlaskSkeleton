@@ -2,8 +2,6 @@
 
 body{
   background-color: #ffffff ! important;
-}
-
-#index_container{
-  padding:16px;
+  width:100%;
+  height:100%;
 }

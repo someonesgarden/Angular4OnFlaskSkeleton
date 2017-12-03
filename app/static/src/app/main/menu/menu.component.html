@@ -1,13 +1,7 @@
-<div *ngIf="menu_show" class="ui stackable inverted menu">
-    <div class="header item">NOOCRACYNOW</div>
-    <a class="active item" (click)="gotoLink($event, 'http://yahoo.co.jp')">About</a>
-    <div class="ui dropdown item">
-        Menu
-        <i class="dropdown icon"></i>
-        <div class="menu">
-            <a class="item" (click)="commuAction($event)">LINK1</a>
-            <a class="item" (click)="gotoLink($event, 'http://yahoo.co.jp')">LINK2</a>
-        </div>
+<div *ngIf="menu_show" class="ui stackable inverted menu" style="border-radius:0 !important;">
+
+    <div class="header item">
+         <img src="/static/src/assets/img/nocracy_logo.png" style="width:200px;padding:0;margin:0;">
     </div>
 
     <div class="right menu">

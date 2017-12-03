@@ -10,7 +10,9 @@ import {MY_ROUTES} from "./app.routing";
 import { AframeComponent } from './components/aframe/aframe.component';
 import { UnderscoreComponent } from './components/underscore/underscore.component';
 import { MainComponent } from './main/main.component';
+import { HomeComponent } from './home/home.component';
 import { MainModule} from "./main/main.module";
+
 // Services
 // Firebase
 import {FirebaseService} from "./services/firebase.service";
@@ -20,6 +22,7 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 import {FIREBASE_CONFIG} from './app-firebase.config';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,8 @@ import {FIREBASE_CONFIG} from './app-firebase.config';
     // D3Component,
     // AframeComponent,
     // UnderscoreComponent,
-    MainComponent
+    MainComponent,
+    HomeComponent
   ],
   imports: [
     MY_ROUTES,
