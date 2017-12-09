@@ -80,9 +80,7 @@ export class FirebaseService {
     }
 
     object_from_key(list, key):  any {
-
-      this.object_update_key(list, key, {'title':'', 'category':'日本映画'});
-
+      // this.object_update_key(list, key, {'title':'', 'category':'日本映画'});
       return this.af.object('/' + list + '/' + key);
     }
 

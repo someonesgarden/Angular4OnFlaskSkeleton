@@ -43,6 +43,7 @@ export class DocumentariesComponent implements OnInit {
     private firebaseservice: FirebaseService
   ) {
     this.loadData();
+    this.listFrom = 1;
   }
 
   ngOnInit() { }

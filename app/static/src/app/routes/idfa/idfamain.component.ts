@@ -19,12 +19,13 @@ declare var jQuery: any;
 import {FirebaseService} from "../../services/firebase.service";
 
 
+
 @Component({
-  selector: 'app-yidffmain',
-  templateUrl: './yidffmain.component.html',
-  styleUrls: ['./yidffmain.component.css']
+  selector: 'app-idfamain',
+  templateUrl: './idfamain.component.html',
+  styleUrls: ['./idfamain.component.css']
 })
-export class YidffmainComponent implements OnInit {
+export class IdfamainComponent implements OnInit {
 
     documentaries = [];
   data_isready = false;
@@ -53,7 +54,7 @@ export class YidffmainComponent implements OnInit {
 
   loadData(): void {
      if(G.env.$DB_TYPE=='firebase') {
-         this.firebaseservice.query_collection_itemref('yidff_works', this.listFrom, this.listTo).snapshotChanges()
+         this.firebaseservice.query_collection_itemref('idfa_works', this.listFrom, this.listTo).snapshotChanges()
          .subscribe(actions => {
 
             if(actions.length==0){
@@ -78,5 +79,20 @@ export class YidffmainComponent implements OnInit {
         this.listFrom += 100;
         this.listTo += 100;
         this.loadData();
+  }
+
+  editItem(_id:number):void{
+    console.log(_id);
+    this.firebaseservice.object_from_key('idfa_works', _id).valueChanges().subscribe(data => {
+          this.modal1.title = data.title;
+          this.modal1.thumb = '/static/images/idfa/'+data.work_imgs_local;
+          this.modal1.story = data.story;
+          this.modal1.extra = "";
+          if(data.etc){
+            this.modal1.extra += data.etc;
+          }
+
+    });
+    jQuery('#modal1').modal('show');
   }
 }

@@ -3,7 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpModule } from '@angular/http'; // HTTPクライアント機能
+import {HttpModule, JsonpModule} from '@angular/http'; // HTTPクライアント機能
 // Routing
 import {MY_ROUTES} from "./app.routing";
 // Custom Components
@@ -20,6 +20,9 @@ import { AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {FIREBASE_CONFIG} from './app-firebase.config';
 import {DocuJapWikiModule} from "./routes/docu-jap-wiki/docu-jap-wiki.module";
+import {IdfaModule} from "./routes/idfa/idfa.module";
+import {DocuFesListModule} from "./routes/docu-fes-list/docu-fes-list.module";
+import {HatenaService} from "./services/hatena.service";
 
 
 @NgModule({
@@ -32,6 +35,7 @@ import {DocuJapWikiModule} from "./routes/docu-jap-wiki/docu-jap-wiki.module";
     MY_ROUTES,
     BrowserModule,
     FormsModule,
+    JsonpModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpModule,
@@ -41,10 +45,13 @@ import {DocuJapWikiModule} from "./routes/docu-jap-wiki/docu-jap-wiki.module";
     MainModule,
     DocumentariesModule,
     DocuJapWikiModule,
-    YidffModule
+    YidffModule,
+    IdfaModule,
+    DocuFesListModule
   ],
   providers: [
-    FirebaseService
+    FirebaseService,
+    HatenaService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

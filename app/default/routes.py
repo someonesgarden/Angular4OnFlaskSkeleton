@@ -20,6 +20,8 @@ import app.services.pyrebase_db as pys
 @default.route('/docu')
 @default.route('/docu_jap_wiki')
 @default.route('/yidff')
+@default.route('/idfa')
+@default.route('/docufeslist')
 def home():
     # Angular4 page
     return default.send_static_file('index.html')

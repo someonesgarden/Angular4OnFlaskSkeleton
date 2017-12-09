@@ -1,8 +1,9 @@
 <div id="loader" *ngIf="!data_isready"
-     style="z-index:10; color:white;position:fixed;top:0;left:0px;width:100%;height:100%;background-color:rgb(235,18,180);text-align:center;">
+     style="z-index:10; color:white;position:fixed;top:0;left:0px;width:100%;height:100%;background-color:rgb(94,172,235);text-align:center;">
      <img src="/static/src/assets/img/nocracy_logo.png" style="height:80px;padding:0;margin-top:400px;">
     <hr noshade color="white" size="1">
     <h2>Now Loading data...</h2>
+
 </div>
 
 
@@ -12,7 +13,7 @@
     </div>
     <div class="right menu">
           <div class="item">
-               <h1>YIDFF</h1>
+               <h1>IDFA</h1>
           </div>
 
     </div>
@@ -23,25 +24,15 @@
 
     <div class="card" *ngFor="let doc of documentaries">
         <div class="image"  (click)="editItem(doc._id)">
-            <img *ngIf="doc.work_imgs_local" src="/static/images/yidff/{{ doc.work_imgs_local }}">
-            <img *ngIf="!doc.work_imgs_local" src="/static/images/dummy_v.png">
+            <img *ngIf="doc.work_imgs_local" src="/static/images/idfa/{{ doc.work_imgs_local }}">
+            <img *ngIf="!doc.work_imgs_local" src="/static/images/dummy.png">
         </div>
         <div class="content">{{ doc._id }}
-            <span class="header">{{ doc.title }}<a *ngIf="doc.title_link" href="{{doc.title_link}}" target="_blank"> &nbsp;[site]</a></span>
-            <span class="header" *ngIf="doc.ja_title" style="padding-top:4px;color:teal;">{{ doc.ja_title }}<a *ngIf="doc.ja_link" href="{{doc.ja_link}}" target="_blank"> &nbsp;[site]</a></span>
+            <span class="header">{{doc.title}} <a *ngIf="doc.title_link" href="{{doc.title_link}}" target="_blank">[site]</a></span>
             <br>
             <div class="meta olive">
-                <span *ngIf="doc.dir">{{ doc.dir }}</span><br/>
+                <span *ngIf="doc.etc">{{ doc.etc }}</span><br/>
             </div>
-        </div>
-        <div class="extra content">
-            <a>
-                <i class="info circle icon"></i>
-                  <span class="date" *ngIf="doc.country">{{ doc.country }} </span>
-                  <span *ngIf="doc.year">{{ doc.year }}</span><br/>
-                <span *ngIf="doc.website"><a href="{{ doc.website }}" target="_blank">&nbsp;[SITE]</a></span>
-                <span *ngIf="doc.distributions">{{ doc.distributions }}</span><br>
-            </a>
         </div>
 
         <button class="ui secondary basic button" (click)="editItem(doc._id)">DETAIL</button>
@@ -55,11 +46,11 @@
 </div>
 
 
-<div class="ui modal">
+<div class="ui modal" id="modal1">
   <i class="close icon"></i>
   <div class="header">
     {{ modal1.title }}
-      <span *ngIf="modal1.ja_title!=''">{{ modal1.ja_title }}</span>
+      <span *ngIf="modal1.title!=''">{{ modal1.title}}</span>
   </div>
   <div class="image content">
     <div class="ui medium image">

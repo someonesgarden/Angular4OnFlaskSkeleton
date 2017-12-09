@@ -7,12 +7,16 @@ import {HomeComponent} from "./routes/home/home.component";
 import {DocumentariesComponent} from "./routes/doku-en-wiki/documentaries.component";
 import {DocuJapWikiComponent} from "./routes/docu-jap-wiki/docu-jap-wiki.component";
 import {YidffmainComponent} from "./routes/yidff/yidffmain.component";
+import {IdfamainComponent} from "./routes/idfa/idfamain.component";
+import {DocuFesListComponent} from "./routes/docu-fes-list/docu-fes-list.component";
 
 const myRoutes = [
   {path:'main', component:MainComponent},
   {path: 'docu', component:DocumentariesComponent},
   {path: 'docu_jap_wiki', component:DocuJapWikiComponent},
   {path: 'yidff', component:YidffmainComponent},
+  {path: 'idfa', component:IdfamainComponent},
+  {path: 'docufeslist', component:DocuFesListComponent},
   {path:'', component:HomeComponent}
 ];
 

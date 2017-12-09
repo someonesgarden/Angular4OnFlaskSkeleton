@@ -31,6 +31,7 @@ export class DocuJapWikiComponent implements OnInit {
     private firebaseservice: FirebaseService
   ) {
       this.loadData();
+          this.listFrom = 1;
   }
 
   ngOnInit() {

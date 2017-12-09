@@ -9,6 +9,7 @@ import {
   AfterViewChecked,
   OnDestroy
 } from '@angular/core';
+import {HatenaService} from "./services/hatena.service";
 declare var jQuery: any;
 
 @Component({
@@ -27,7 +28,9 @@ export class AppComponent implements
   AfterViewChecked,
   OnDestroy {
 
-  constructor() {}
+  constructor(
+      private hatenaservice:HatenaService
+  ) {}
 
   //---- Component LifeCycle --------------------------
   ngOnChanges(): void {
@@ -36,6 +39,7 @@ export class AppComponent implements
 
   ngOnInit(): void {
    // console.log('App:NgOnInit');
+    this.hatenaservice.testCall('http://google.co.jp/');
   }
 
   ngDoCheck(): void {
