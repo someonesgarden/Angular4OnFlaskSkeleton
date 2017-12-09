@@ -1,0 +1,10 @@
+Via: 1.1 2d481c8777d4e586fd3d154740a24d93.cloudfront.net (CloudFront)
+X-Cache: Miss from cloudfront
+Accept-Ranges: bytes
+Server: AmazonS3
+Last-Modified: Mon, 13 Nov 2017 12:18:33 GMT
+Etag: "e34ba9e9dd1a705875d36ce4657c0e50"
+X-Amz-Cf-Id: Fb604KyRC22uwzWwh0-vWocfD6o81Xsxw3DAMPKL678Q82MBoGbR7g==
+Cache-Control: max-age=2592000, must-revalidate
+Date: Sat, 09 Dec 2017 03:18:03 GMT
+Content-Type: image/jpeg

@@ -2,6 +2,8 @@
 
 import scrapy
 import re
+from ..items import DocListItem
+
 BASE_URL = 'http://en.wikipedia.org'
 BASE_URL_JA = 'http://ja.wikipedia.org'
 
@@ -16,37 +18,10 @@ scrapy crawl docu_list -o ../../app/static/data/doclist.json
 https://en.wikipedia.org/wiki/List_of_documentary_films
 https://en.wikipedia.org/wiki/Category:Documentary_films_by_country
 https://en.wikipedia.org/wiki/Category:Documentaries_by_topic
-
 日本語圏（量が少ない）
 https://ja.wikipedia.org/wiki/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%82%BF%E3%83%AA%E3%83%BC
 
 """
-
-# A. Define the data to be scraped
-class DocListItem(scrapy.Item):
-    order = scrapy.Field()
-    country = scrapy.Field()
-    languarge = scrapy.Field()
-    media = scrapy.Field()
-    category = scrapy.Field()
-    title = scrapy.Field()
-    title_link = scrapy.Field()
-    year = scrapy.Field()
-    dir = scrapy.Field()
-    pro = scrapy.Field()
-    title_link =  scrapy.Field()
-    dir_link  = scrapy.Field()
-    pro_link = scrapy.Field()
-    running_time = scrapy.Field()
-    story = scrapy.Field()
-    distributions = scrapy.Field()
-    work_imgs = scrapy.Field()
-    work_imgs_local= scrapy.Field()
-    website = scrapy.Field()
-    ja_title = scrapy.Field()
-    ja_link = scrapy.Field()
-    ja_story = scrapy.Field()
-
 
 # B. Create a named spider
 class NWinnerSpider(scrapy.Spider):
@@ -55,8 +30,10 @@ class NWinnerSpider(scrapy.Spider):
     start_urls = ["https://en.wikipedia.org/wiki/List_of_documentary_films"]
 
     # For Scrapy v 1.0+, custom_settings can override the item pipelines in settings
+    # ScrapyのImageパイプライン設定と保存場所を指定（settings.pyでは設定しないでこちらで設定する！）
     custom_settings = {
         'ITEM_PIPELINES': {'docu_from_wiki.pipelines.DocuFromWikiImagesPipeline': 1},
+        'IMAGES_STORE'  : '../../app/static/images/docu_from_wiki'
     }
 
     # C. A parse method to deal with the HTTP response
@@ -72,6 +49,8 @@ class NWinnerSpider(scrapy.Spider):
                     for tr_arg in tr_args:
                         # text = w.xpath('descendant-or-self::text()').extract()
                         ddata = process_doc_tr(tr_arg, order)
+
+                        ddata['category'] = 'film'
 
                         if ddata['title_link']:
                             # WIKIに作品(英語）ページがある場合
@@ -203,7 +182,6 @@ class NWinnerSpider(scrapy.Spider):
             ja_story = ja_story.replace('href="/wiki', 'href="' + BASE_URL_JA + '/wiki')
             ja_story = ja_story.replace('href="#', 'href="' + item['title_link'] + '#')
             item['ja_story'] = ja_story
-
         infobox = response.xpath('//table[contains(@class,"infobox")]')
 
         yield item

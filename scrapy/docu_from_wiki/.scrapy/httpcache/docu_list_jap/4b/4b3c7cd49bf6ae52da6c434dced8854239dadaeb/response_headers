@@ -1,0 +1,9 @@
+X-Client-Ip: 126.236.210.39
+X-Cache-Status: int-front
+X-Varnish: 1023522816
+X-Cache: cp4032 int
+Set-Cookie: WMF-Last-Access=07-Dec-2017;Path=/;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
+Set-Cookie: WMF-Last-Access-Global=07-Dec-2017;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
+Server: Varnish
+Location: https://ja.wikipedia.org/wiki/%E7%B5%86_-%E5%86%8D%E3%81%B3%E3%81%AE%E7%A9%BA%E3%81%B8-Blue_Impulse
+Date: Thu, 07 Dec 2017 05:26:55 GMT

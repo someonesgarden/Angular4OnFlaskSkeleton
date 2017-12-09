@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as d3 from 'd3';
 import * as G from '../../globals';
+import {FirebaseService} from "../services/firebase.service";
 
 
 @Injectable()
 export class ListService {
 
-  constructor() { }
+  constructor(private firebaseservice: FirebaseService) { }
 
    updateList(data): void {
         var rows, cells;
@@ -21,7 +22,6 @@ export class ListService {
 
         rows.enter().append('tr')
             .on('click', (d)=> {
-                console.log('You clicked a row ' + JSON.stringify(d));
                 this.displayWinner(d);
             });
         // Fade out excess rows over 2 seconds
@@ -39,7 +39,6 @@ export class ListService {
         cells.text(function(d) {
                 return d;
             });
-
         // Display a random winner if data is available
         if(data.length){
             this.displayWinner(data[Math.floor(Math.random() * data.length)]);
@@ -48,7 +47,7 @@ export class ListService {
 
     displayWinner(_wData): void {
 
-        this.getDataFromAPI('winners/' + _wData._id, (error, wData)=> {
+        this.getDataFromAPI(_wData._id, (error, wData)=> {
 
             var nw = d3.select('#nobel-winner');
 
@@ -75,10 +74,21 @@ export class ListService {
         });
     };
 
-      // Calling $EVE.API
-    getDataFromAPI(resource, callback) {
+  // Calling $EVE.API
+  getDataFromAPI(resource, callback) {
+
+    if (G.env.$DB_TYPE == 'firebase') {
+      // FIREBASEの場合
+      console.log('getDataFromAPI=firebase:',  resource);
+      let key = resource
+      this.firebaseservice.object_from_key('winners_all', key).valueChanges().subscribe(data => {
+        callback(null, data);
+      });
+    }
+    else {
+      // EVE LOCAL Serverの場合
       console.log('getDataFromAPI=', G.env.$EVE_API + resource);
-      d3.json(G.env.$EVE_API + resource, function (error, data: any) {
+      d3.json(G.env.$EVE_API + 'winners/' + resource, function (error, data: any) {
         if (error) {
           console.log('error');
           return callback(error);
@@ -91,5 +101,5 @@ export class ListService {
         }
       });
     }
-
+  }
 }

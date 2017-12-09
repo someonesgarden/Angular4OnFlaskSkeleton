@@ -1,0 +1,88 @@
+<div id="loader" *ngIf="!data_isready"
+     style="z-index:10; color:white;position:fixed;top:0;left:0px;width:100%;height:100%;background-color:rgb(235,174,39);text-align:center;">
+     <img src="/static/src/assets/img/nocracy_logo.png" style="height:80px;padding:0;margin-top:400px;">
+    <hr noshade color="white" size="1">
+    <h2>Now Loading data...</h2>
+
+</div>
+
+
+<div class="ui stackable inverted menu" style="border-radius:0 !important;">
+    <div class="header item">
+         <img src="/static/src/assets/img/nocracy_logo.png" style="width:200px;padding:0;margin:0;">
+    </div>
+    <div class="right menu">
+          <div class="item">
+               <h1> Documentary Films From Wiki| JAPAN</h1>
+          </div>
+
+    </div>
+</div>
+
+
+<div class="ui eight stackable doubling cards" style="margin:10px;">
+
+    <div class="card" *ngFor="let doc of documentaries">
+        <div class="image">
+            <img *ngIf="doc.work_imgs_local" src="/static/images/docu_from_wiki/{{ doc.work_imgs_local }}">
+            <!--img *ngIf="!doc.work_imgs_local" src="/static/images/dummy_v.png"-->
+        </div>
+        <div class="content">{{ doc._id }}
+             <span class="header">{{ doc.title }}<a *ngIf="doc.title_link" href="https://en.wikipedia.org{{doc.title_link}}" target="_blank"> &nbsp;[wiki]</a></span>
+            <span class="header" *ngIf="doc.ja_title" style="padding-top:4px;color:teal;">{{ doc.ja_title }}<a *ngIf="doc.ja_link" href="{{doc.ja_link}}" target="_blank"> &nbsp;[wiki]</a></span>
+            <br>
+            <div class="meta olive">
+                <span *ngIf="doc.dir">D:{{ doc.dir }} <a *ngIf="doc.dir_link" href="https://ja.wikipedia.org{{ doc.dir_link }}" target="_blank">wiki</a></span><br/>
+                <span *ngIf="doc.pro">P:{{ doc.pro }} <a *ngIf="doc.pro_link" href="https://ja.wikipedia.org{{ doc.pro_link }}" target="_blank">wiki</a></span><br/>
+            </div>
+        </div>
+        <div class="extra content">
+            <a>
+                <i class="info circle icon"></i>
+                  <span class="date" *ngIf="doc.country">{{ doc.country }} </span>
+                  <span *ngIf="doc.year">{{ doc.year }}</span><br/>
+                <span *ngIf="doc.website"><a href="{{ doc.website }}" target="_blank">&nbsp;[SITE]</a></span>
+                <span *ngIf="doc.distributions">{{ doc.distributions }}</span><br>
+            </a>
+        </div>
+
+        <button class="ui secondary basic button" (click)="editItem(doc._id)">DETAIL</button>
+    </div>
+
+     <div class="card" *ngIf="more_button_visible">
+          <div class="content"></div>
+          <button class="ui secondary green button" (click)="loadMoreLists()">[+ MORE]</button>
+     </div>
+
+</div>
+
+
+<div class="ui modal" id="modal2">
+  <i class="close icon"></i>
+  <div class="header">
+    {{ modal2.title }}
+      <span *ngIf="modal2.ja_title!=''">{{ modal2.ja_title }}</span>
+  </div>
+  <div class="image content">
+    <div class="ui medium image">
+      <img src="{{ modal2.thumb }}">
+    </div>
+    <div class="description">
+        <div class="ui"[innerHTML]="modal2.story"></div>
+        <hr>
+        <div class="ui" [innerHTML]="modal2.extra"></div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">
+      [x] Close
+    </div>
+    <div class="ui positive right labeled icon button">
+      EDIT
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
+
+
+<br clear="all"/>

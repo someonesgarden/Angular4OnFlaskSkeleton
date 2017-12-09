@@ -17,3 +17,5 @@ app/static/src/app/app-firebase.config.ts
 /app/static/src/app/app-firebase.config.ts
 /firebase_config.py
 /app/static/images/docu_from_wiki/
+/data/mnist/
+/scrapy/docu_jap_wiki.zip

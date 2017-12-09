@@ -1,0 +1,8 @@
+X-Client-Ip: 126.236.210.39
+X-Cache-Status: int-front
+X-Varnish: 282087533
+X-Cache: cp4024 int
+Set-Cookie: WMF-Last-Access=07-Dec-2017;Path=/;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
+Server: Varnish
+Location: https://upload.wikimedia.org/wikipedia/en/thumb/3/35/WoodstockFilmPoster.jpg/220px-WoodstockFilmPoster.jpg
+Date: Thu, 07 Dec 2017 05:28:18 GMT

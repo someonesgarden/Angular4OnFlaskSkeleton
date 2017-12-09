@@ -1,0 +1,9 @@
+X-Client-Ip: 126.236.210.39
+X-Cache-Status: int-front
+X-Varnish: 1021106431
+X-Cache: cp4032 int
+Set-Cookie: WMF-Last-Access=07-Dec-2017;Path=/;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
+Set-Cookie: WMF-Last-Access-Global=07-Dec-2017;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
+Server: Varnish
+Location: https://ja.wikipedia.org/wiki/%E5%A4%A2%E3%81%AF%E7%89%9B%E3%81%AE%E3%81%8A%E5%8C%BB%E8%80%85%E3%81%95%E3%82%93
+Date: Thu, 07 Dec 2017 05:26:57 GMT

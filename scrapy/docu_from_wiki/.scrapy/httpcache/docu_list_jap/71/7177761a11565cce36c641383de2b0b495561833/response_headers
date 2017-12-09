@@ -1,0 +1,9 @@
+X-Client-Ip: 126.236.210.39
+X-Cache-Status: int-front
+X-Varnish: 1041137999
+X-Cache: cp4032 int
+Set-Cookie: WMF-Last-Access=07-Dec-2017;Path=/;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
+Set-Cookie: WMF-Last-Access-Global=07-Dec-2017;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
+Server: Varnish
+Location: https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB%E3%83%B3%E3%83%BB%E3%83%90%E3%82%A4%E3%82%AA%E3%83%AC%E3%83%B3%E3%82%B9_(1981%E5%B9%B4%E3%81%AE%E6%98%A0%E7%94%BB)
+Date: Thu, 07 Dec 2017 05:26:55 GMT

@@ -1,24 +1,24 @@
 import scrapy
 import re
+from ..items import NWinnerItem
 
 BASE_URL = 'http://en.wikipedia.org'
 
 
-class NWinnerItem(scrapy.Item):
-    name = scrapy.Field()
-    link = scrapy.Field()
-    year = scrapy.Field()
-    category = scrapy.Field()
-    country = scrapy.Field()
-    gender = scrapy.Field()
-    born_in = scrapy.Field()
-    date_of_birth = scrapy.Field()
-    date_of_death = scrapy.Field()
-    place_of_birth = scrapy.Field()
-    place_of_death = scrapy.Field()
-    text = scrapy.Field()
-    image_urls = scrapy.Field()
-
+# class NWinnerItem(scrapy.Item):
+#     name = scrapy.Field()
+#     link = scrapy.Field()
+#     year = scrapy.Field()
+#     category = scrapy.Field()
+#     country = scrapy.Field()
+#     gender = scrapy.Field()
+#     born_in = scrapy.Field()
+#     date_of_birth = scrapy.Field()
+#     date_of_death = scrapy.Field()
+#     place_of_birth = scrapy.Field()
+#     place_of_death = scrapy.Field()
+#     text = scrapy.Field()
+#     image_urls = scrapy.Field()
 
 class NWinnerSpider(scrapy.Spider):
     """ This spider uses Wikipedia's  Nobel laureates list to generate requests which scrape the winners' pages for basic biographical data """

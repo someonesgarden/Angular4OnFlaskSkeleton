@@ -1,0 +1,20 @@
+X-Client-Ip: 126.236.210.39
+X-Cache-Status: hit-remote
+X-Varnish: 538755671 540265532, 423964422, 179244023, 279985602
+X-Object-Meta-Sha1Base36: 8ah7ihst4gy39k4uuygab6or9iq308r
+X-Cache: cp1048 hit/3, cp2017 pass, cp4023 miss, cp4024 miss
+Content-Disposition: inline;filename*=UTF-8''Zero_Days.png
+Access-Control-Expose-Headers: Age, Date, Content-Length, Content-Range, X-Content-Duration, X-Cache, X-Varnish
+Accept-Ranges: bytes
+Strict-Transport-Security: max-age=106384710; includeSubDomains; preload
+Last-Modified: Sat, 21 May 2016 13:28:57 GMT
+Etag: bbedb8b6058f23bb05c6e964b871a0e7
+X-Timestamp: 1463837336.57000
+Via: 1.1 varnish-v4, 1.1 varnish-v4, 1.1 varnish-v4, 1.1 varnish-v4
+Date: Thu, 07 Dec 2017 05:28:10 GMT
+X-Analytics: WMF-Last-Access=07-Dec-2017;https=1
+Access-Control-Allow-Origin: *
+X-Trans-Id: txd565b17526ac45cb89199-005a28c7cb
+Content-Type: image/png
+Age: 2463
+Timing-Allow-Origin: *

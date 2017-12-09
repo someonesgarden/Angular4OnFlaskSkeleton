@@ -17,6 +17,9 @@ import app.services.pyrebase_db as pys
 
 @default.route('/')
 @default.route('/main')
+@default.route('/docu')
+@default.route('/docu_jap_wiki')
+@default.route('/yidff')
 def home():
     # Angular4 page
     return default.send_static_file('index.html')

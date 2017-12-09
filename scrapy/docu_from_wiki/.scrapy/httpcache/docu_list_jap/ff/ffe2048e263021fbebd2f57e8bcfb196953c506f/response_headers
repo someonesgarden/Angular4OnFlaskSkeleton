@@ -1,0 +1,9 @@
+X-Client-Ip: 126.236.210.39
+X-Cache-Status: int-front
+X-Varnish: 1025586794
+X-Cache: cp4032 int
+Set-Cookie: WMF-Last-Access=07-Dec-2017;Path=/;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
+Set-Cookie: WMF-Last-Access-Global=07-Dec-2017;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
+Server: Varnish
+Location: https://ja.wikipedia.org/wiki/FOR_REAL_-%E3%83%99%E3%82%A4%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%BA%E3%80%81%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%81%B8%E3%81%AE%E7%9C%9F%E5%AE%9F%E3%80%82-
+Date: Thu, 07 Dec 2017 05:26:59 GMT

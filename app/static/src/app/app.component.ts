@@ -48,7 +48,6 @@ export class AppComponent implements
       jQuery('#js-sidebar').click(function() {
         jQuery('.ui.sidebar').sidebar('toggle');
       });
-
   }
 
   ngAfterContentChecked(): void {

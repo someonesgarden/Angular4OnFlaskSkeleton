@@ -6,30 +6,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http'; // HTTPクライアント機能
 // Routing
 import {MY_ROUTES} from "./app.routing";
+// Custom Components
+import { MainComponent } from './routes/nobel_laureates/main.component';
+import { HomeComponent } from './routes/home/home.component';
 // Custom Modules
-import { AframeComponent } from './components/aframe/aframe.component';
-import { UnderscoreComponent } from './components/underscore/underscore.component';
-import { MainComponent } from './main/main.component';
-import { HomeComponent } from './home/home.component';
-import { MainModule} from "./main/main.module";
-
+import { MainModule} from "./routes/nobel_laureates/main.module";
+import {DocumentariesModule} from "./routes/doku-en-wiki/documentaries.module";
+import {YidffModule} from "./routes/yidff/yidff.module";
 // Services
-// Firebase
 import {FirebaseService} from "./services/firebase.service";
 import {AngularFireModule} from 'angularfire2';
 import { AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {FIREBASE_CONFIG} from './app-firebase.config';
-
+import {DocuJapWikiModule} from "./routes/docu-jap-wiki/docu-jap-wiki.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    // D3graphComponent,
-    // D3Component,
-    // AframeComponent,
-    // UnderscoreComponent,
     MainComponent,
     HomeComponent
   ],
@@ -43,7 +38,10 @@ import {FIREBASE_CONFIG} from './app-firebase.config';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    MainModule
+    MainModule,
+    DocumentariesModule,
+    DocuJapWikiModule,
+    YidffModule
   ],
   providers: [
     FirebaseService

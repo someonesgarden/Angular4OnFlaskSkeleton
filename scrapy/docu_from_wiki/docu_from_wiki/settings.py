@@ -18,6 +18,8 @@ NEWSPIDER_MODULE = 'docu_from_wiki.spiders'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'docu_from_wiki (+http://www.yourdomain.com)'
 
+HTTPCACHE_ENABLED = True
+
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
@@ -68,9 +70,9 @@ ROBOTSTXT_OBEY = True
 #    'docu_from_wiki.pipelines.DocuFromWikiPipeline': 300,
 #}
 
-ITEM_PIPELINES = {'docu_from_wiki.pipelines.DocuFromWikiImagesPipeline': 1}
-# ITEM_PIPELINES = {'scrapy.pipelines.images.ImagesPipeline': 1}
-IMAGES_STORE = '../../app/static/images/docu_from_wiki'
+# ITEM_PIPELINES = {'docu_from_wiki.pipelines.DocuFromWikiImagesPipeline': 1}
+# # ITEM_PIPELINES = {'scrapy.pipelines.images.ImagesPipeline': 1}
+# IMAGES_STORE = '../../app/static/images/docu_from_wiki'
 
 MEDIA_ALLOW_REDIRECTS = True
 

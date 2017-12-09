@@ -1,0 +1,20 @@
+X-Client-Ip: 126.236.210.39
+X-Cache-Status: hit-front
+X-Varnish: 107045647 102328522, 250565444, 66324533 56907925, 283292245 31273972
+X-Object-Meta-Sha1Base36: foxl2gck2hv5qbf3417379d44dn0tfg
+X-Cache: cp1050 hit/2, cp2026 pass, cp4021 hit/8, cp4024 hit/11
+Content-Disposition: inline;filename*=UTF-8''%22A_Brony_Tale%22_Official_Poster.jpg
+Access-Control-Expose-Headers: Age, Date, Content-Length, Content-Range, X-Content-Duration, X-Cache, X-Varnish
+Age: 51723
+Strict-Transport-Security: max-age=106384710; includeSubDomains; preload
+Last-Modified: Fri, 20 Jun 2014 03:56:40 GMT
+Etag: da2d2f525bb8d34ec98e8e970ed5e96a
+X-Timestamp: 1403236599.11871
+Via: 1.1 varnish-v4, 1.1 varnish-v4, 1.1 varnish-v4, 1.1 varnish-v4
+Date: Thu, 07 Dec 2017 05:28:10 GMT
+X-Analytics: WMF-Last-Access=07-Dec-2017;https=1
+Access-Control-Allow-Origin: *
+X-Trans-Id: tx725bf13ab1d144beae789-005a28075d
+Content-Type: image/jpeg
+Accept-Ranges: bytes
+Timing-Allow-Origin: *

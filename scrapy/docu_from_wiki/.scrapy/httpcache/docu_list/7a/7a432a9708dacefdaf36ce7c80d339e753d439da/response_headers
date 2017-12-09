@@ -1,0 +1,19 @@
+X-Client-Ip: 126.236.210.39
+X-Cache-Status: hit-local
+X-Varnish: 114457154 117744854, 113407646, 39813045 6775417, 276024566
+X-Object-Meta-Sha1Base36: 8nk8k0rvy3pvk9alqte67mfspcbqn67
+X-Cache: cp1050 hit/1, cp2024 pass, cp4024 hit/7, cp4024 miss
+Access-Control-Expose-Headers: Age, Date, Content-Length, Content-Range, X-Content-Duration, X-Cache, X-Varnish
+Age: 43489
+Strict-Transport-Security: max-age=106384710; includeSubDomains; preload
+Last-Modified: Thu, 03 Oct 2013 22:51:15 GMT
+Etag: 199ccc2302b1e653f3137d39aef080db
+X-Timestamp: 1380840674.58442
+Via: 1.1 varnish-v4, 1.1 varnish-v4, 1.1 varnish-v4, 1.1 varnish-v4
+Date: Thu, 07 Dec 2017 05:28:10 GMT
+X-Analytics: WMF-Last-Access=07-Dec-2017;https=1
+Access-Control-Allow-Origin: *
+X-Trans-Id: txe732ae68d35e41efb0fcd-005a282788
+Content-Type: image/jpeg
+Accept-Ranges: bytes
+Timing-Allow-Origin: *

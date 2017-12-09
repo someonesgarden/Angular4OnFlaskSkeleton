@@ -51,7 +51,7 @@ export class FirebaseService {
       });
   }
 
-  query_collection_itemref(name, key=null, value=null): any {
+  query_collection_itemref(name, from=0, to=100, key=null, value=null): any {
     console.log('read_collection');
     let itemsRef = null;
 
@@ -59,7 +59,11 @@ export class FirebaseService {
       itemsRef = this.af.list(name, ref => ref.orderByChild(key).equalTo(value));
     }
     else{
-      itemsRef = this.af.list(name);
+      if(to==0){
+        itemsRef = this.af.list(name);
+      }else{
+        itemsRef = this.af.list(name, ref => ref.orderByKey().startAt(String(from)).endAt(String(to)));
+      }
     }
     return itemsRef;
   }
@@ -75,12 +79,28 @@ export class FirebaseService {
       });
     }
 
-    object_from_key(key): void {
-      this.af.object('/winners_all/' + key).valueChanges().subscribe(profile => {
-        console.log('object_from_key=');
-          console.log(profile);
-      })
+    object_from_key(list, key):  any {
+
+      this.object_update_key(list, key, {'title':'', 'category':'日本映画'});
+
+      return this.af.object('/' + list + '/' + key);
     }
+
+    // FirebaseのObjectを編集する
+    object_update_key(list, key,data): any {
+
+    // data = {'title':'newtitle', 'category':'日本映画'};
+
+    let obj = this.af.object('/' + list + '/' + key);
+      obj.update(data);
+    }
+
+    // object_from_key_tmp(key): void {
+    //   this.af.object('/winners_all/' + key).valueChanges().subscribe(profile => {
+    //     console.log('object_from_key=');
+    //       //console.log(profile);
+    //   })
+    // }
 
 
 }

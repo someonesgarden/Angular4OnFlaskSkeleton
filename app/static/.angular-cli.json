@@ -22,6 +22,7 @@
         "styles.css",
         "assets/css/colors.css",
         "assets/css/graph.css",
+        "assets/css/loader.css",
         "assets/css/semantic/sidebar.css",
         "assets/css/semantic/menu.css",
         "../node_modules/semantic-ui/dist/semantic.min.css"

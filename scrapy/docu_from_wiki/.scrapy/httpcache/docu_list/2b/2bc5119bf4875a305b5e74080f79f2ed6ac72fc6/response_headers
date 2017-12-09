@@ -1,0 +1,8 @@
+X-Client-Ip: 126.236.210.39
+X-Cache-Status: int-front
+X-Varnish: 285577776
+X-Cache: cp4024 int
+Set-Cookie: WMF-Last-Access=07-Dec-2017;Path=/;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
+Server: Varnish
+Location: https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Metallica_-_A_Year_and_a_Half_in_the_Life_of_Metallica_cover.jpg/220px-Metallica_-_A_Year_and_a_Half_in_the_Life_of_Metallica_cover.jpg
+Date: Thu, 07 Dec 2017 05:28:11 GMT

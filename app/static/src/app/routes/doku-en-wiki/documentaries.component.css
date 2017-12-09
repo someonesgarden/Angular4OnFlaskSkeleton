@@ -1,0 +1,9 @@
+.ui.cards > .card .meta{
+    font-size:10px;
+    line-height: 1.2em;
+}
+
+
+.ui.cards > .card .extra{
+    font-size:9px;
+}

@@ -70,9 +70,9 @@ ROBOTSTXT_OBEY = True
 #    'nobel_winners.pipelines.NobelWinnersPipeline': 300,
 #}
 
-ITEM_PIPELINES = {'nobel_winners.pipelines.NobelImagesPipeline': 1}
-# ITEM_PIPELINES = {'scrapy.pipelines.images.ImagesPipeline': 1}
-IMAGES_STORE = '../../app/static/images'
+# ITEM_PIPELINES = {'nobel_winners.pipelines.NobelImagesPipeline': 1}
+# # ITEM_PIPELINES = {'scrapy.pipelines.images.ImagesPipeline': 1}
+# IMAGES_STORE = '../../app/static/images'
 
 MEDIA_ALLOW_REDIRECTS = True
 

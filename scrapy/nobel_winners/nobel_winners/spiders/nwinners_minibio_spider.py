@@ -1,16 +1,17 @@
 import scrapy
 import re
+from ..items import NWinnerItemBio
 
 BASE_URL = 'http://en.wikipedia.org'
 
 
-class NWinnerItemBio(scrapy.Item):
-    link = scrapy.Field()
-    name = scrapy.Field()
-    mini_bio = scrapy.Field()
-    image_urls = scrapy.Field()
-    bio_image = scrapy.Field()
-    images = scrapy.Field()
+# class NWinnerItemBio(scrapy.Item):
+#     link = scrapy.Field()
+#     name = scrapy.Field()
+#     mini_bio = scrapy.Field()
+#     image_urls = scrapy.Field()
+#     bio_image = scrapy.Field()
+#     images = scrapy.Field()
 
 
 class NWinnerSpiderBio(scrapy.Spider):
@@ -25,6 +26,7 @@ class NWinnerSpiderBio(scrapy.Spider):
     # For Scrapy v 1.0+, custom_settings can override the item pipelines in settings
     custom_settings = {
         'ITEM_PIPELINES': {'nobel_winners.pipelines.NobelImagesPipeline':1},
+        'IMAGES_STORE' : '../../app/static/images/winners'
     }
 
     def parse(self, response):

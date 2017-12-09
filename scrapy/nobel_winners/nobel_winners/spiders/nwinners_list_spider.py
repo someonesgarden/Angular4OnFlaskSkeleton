@@ -1,22 +1,23 @@
 import scrapy
 import re
+from ..items import NWinnerItem
 BASE_URL = 'http://en.wikipedia.org'
 
 
 
 # A. Define the data to be scraped
-class NWinnerItem(scrapy.Item):
-    name = scrapy.Field()
-    link = scrapy.Field()
-    year = scrapy.Field()
-    category = scrapy.Field()
-    country = scrapy.Field()
-    gender = scrapy.Field()
-    born_in = scrapy.Field()
-    date_of_birth = scrapy.Field()
-    place_of_birth = scrapy.Field()
-    place_of_death = scrapy.Field()
-    text = scrapy.Field()
+# class NWinnerItem(scrapy.Item):
+#     name = scrapy.Field()
+#     link = scrapy.Field()
+#     year = scrapy.Field()
+#     category = scrapy.Field()
+#     country = scrapy.Field()
+#     gender = scrapy.Field()
+#     born_in = scrapy.Field()
+#     date_of_birth = scrapy.Field()
+#     place_of_birth = scrapy.Field()
+#     place_of_death = scrapy.Field()
+#     text = scrapy.Field()
 
 # B. Create a named spider
 class NWinnerSpider(scrapy.Spider):
