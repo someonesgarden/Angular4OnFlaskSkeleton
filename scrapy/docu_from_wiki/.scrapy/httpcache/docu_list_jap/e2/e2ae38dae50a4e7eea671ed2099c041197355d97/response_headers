@@ -1,9 +1,0 @@
-X-Client-Ip: 126.236.210.39
-X-Cache-Status: int-front
-X-Varnish: 1033055127
-X-Cache: cp4032 int
-Set-Cookie: WMF-Last-Access=07-Dec-2017;Path=/;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
-Set-Cookie: WMF-Last-Access-Global=07-Dec-2017;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
-Server: Varnish
-Location: https://ja.wikipedia.org/wiki/Shintoku%E7%A9%BA%E6%83%B3%E3%81%AE%E6%A3%AE%E6%98%A0%E7%94%BB%E7%A5%AD
-Date: Thu, 07 Dec 2017 05:26:55 GMT

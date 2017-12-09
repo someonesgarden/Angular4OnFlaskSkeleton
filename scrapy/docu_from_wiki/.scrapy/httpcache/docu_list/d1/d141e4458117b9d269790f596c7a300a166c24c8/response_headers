@@ -1,9 +1,0 @@
-X-Client-Ip: 126.236.210.39
-X-Cache-Status: int-front
-X-Varnish: 1019897457
-X-Cache: cp4032 int
-Set-Cookie: WMF-Last-Access=07-Dec-2017;Path=/;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
-Set-Cookie: WMF-Last-Access-Global=07-Dec-2017;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
-Server: Varnish
-Location: https://en.wikipedia.org/wiki/Where_Have_All_the_Flowers_Gone%3F_(film)
-Date: Thu, 07 Dec 2017 05:28:16 GMT

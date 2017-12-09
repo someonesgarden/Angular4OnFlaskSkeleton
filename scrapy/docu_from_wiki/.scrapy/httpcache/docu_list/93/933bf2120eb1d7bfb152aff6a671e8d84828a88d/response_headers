@@ -1,8 +1,0 @@
-X-Client-Ip: 126.236.210.39
-X-Cache-Status: int-front
-X-Varnish: 283753787
-X-Cache: cp4024 int
-Set-Cookie: WMF-Last-Access=07-Dec-2017;Path=/;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
-Server: Varnish
-Location: https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Age_of_stupid_poster.jpg/220px-Age_of_stupid_poster.jpg
-Date: Thu, 07 Dec 2017 05:28:09 GMT

@@ -1,9 +1,0 @@
-X-Client-Ip: 153.214.130.109
-X-Cache-Status: int-front
-X-Varnish: 109306842
-X-Cache: cp4031 int
-Set-Cookie: WMF-Last-Access=23-Nov-2017;Path=/;HttpOnly;secure;Expires=Mon, 25 Dec 2017 00:00:00 GMT
-Set-Cookie: WMF-Last-Access-Global=23-Nov-2017;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon, 25 Dec 2017 00:00:00 GMT
-Server: Varnish
-Location: https://en.wikipedia.org/wiki/Steven_Chu
-Date: Thu, 23 Nov 2017 01:12:40 GMT

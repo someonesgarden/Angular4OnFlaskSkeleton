@@ -1,8 +1,0 @@
-X-Client-Ip: 126.236.210.39
-X-Cache-Status: int-front
-X-Varnish: 279891102
-X-Cache: cp4024 int
-Set-Cookie: WMF-Last-Access=07-Dec-2017;Path=/;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
-Server: Varnish
-Location: https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Zielen_Van_Napels.jpg/220px-Zielen_Van_Napels.jpg
-Date: Thu, 07 Dec 2017 05:28:09 GMT

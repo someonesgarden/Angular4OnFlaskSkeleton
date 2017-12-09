@@ -1,8 +1,0 @@
-X-Client-Ip: 126.236.210.39
-X-Cache-Status: int-front
-X-Varnish: 284992504
-X-Cache: cp4024 int
-Set-Cookie: WMF-Last-Access=07-Dec-2017;Path=/;HttpOnly;secure;Expires=Mon, 08 Jan 2018 00:00:00 GMT
-Server: Varnish
-Location: https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/What_would_jesus_buy_ver2.jpg/220px-What_would_jesus_buy_ver2.jpg
-Date: Thu, 07 Dec 2017 05:28:29 GMT
