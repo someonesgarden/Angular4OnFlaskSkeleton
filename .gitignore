@@ -19,3 +19,4 @@ app/static/src/app/app-firebase.config.ts
 /app/static/images/docu_from_wiki/
 /data/mnist/
 /scrapy/docu_jap_wiki.zip
+/scrapy/
