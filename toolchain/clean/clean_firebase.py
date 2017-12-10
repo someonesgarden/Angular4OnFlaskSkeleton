@@ -83,27 +83,28 @@ def format_for_firebase(df, date=False):
 #######################################
 
 
-df_clean, df_born_in = clean_data(df)
-df_winner_bios = pd.read_json(open(rootdir+'/app/static/data/minibios.json'))
-df_winner_bios = df_winner_bios.where((pd.notnull(df_winner_bios)), None)
-df_winners_all = pd.merge(df_clean, df_winner_bios, how='outer', on='link')
-df_winners_all = df_winners_all[df_winners_all.name.notnull()]
+def batch1():
+    df_clean, df_born_in = clean_data(df)
+    df_winner_bios = pd.read_json(open(rootdir+'/app/static/data/minibios.json'))
+    df_winner_bios = df_winner_bios.where((pd.notnull(df_winner_bios)), None)
+    df_winners_all = pd.merge(df_clean, df_winner_bios, how='outer', on='link')
+    df_winners_all = df_winners_all[df_winners_all.name.notnull()]
 
 
-# ローカルのMongoDBではなく、Firebaseに保存する
-fbdbClass = pys.PyrebaseClass()
-fbdbClass.init_db()
+    # ローカルのMongoDBではなく、Firebaseに保存する
+    fbdbClass = pys.PyrebaseClass()
+    fbdbClass.init_db()
 
-records = format_for_firebase(df_born_in)
-fbdbClass.push_data('winners_born_in', records)
+    records = format_for_firebase(df_born_in)
+    fbdbClass.push_data('winners_born_in', records)
 
-records = format_for_firebase(df_clean, date=True)
-fbdbClass.push_data('winners', records)
+    records = format_for_firebase(df_clean, date=True)
+    fbdbClass.push_data('winners', records)
 
-records = format_for_firebase(df_winner_bios)
-fbdbClass.push_data('winner_bios', records)
+    records = format_for_firebase(df_winner_bios)
+    fbdbClass.push_data('winner_bios', records)
 
-records = format_for_firebase(df_winners_all, date=True)
-print(records)
-fbdbClass.push_data('winners_all', records)
+    records = format_for_firebase(df_winners_all, date=True)
+    print(records)
+    fbdbClass.push_data('winners_all', records)
 

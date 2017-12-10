@@ -16,6 +16,7 @@ import app.services.pyrebase_db as pys
 
 
 @default.route('/')
+@default.route('/core')
 @default.route('/main')
 @default.route('/docu')
 @default.route('/docu_jap_wiki')

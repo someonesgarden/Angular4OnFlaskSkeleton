@@ -9,6 +9,7 @@ import {DocuJapWikiComponent} from "./routes/docu-jap-wiki/docu-jap-wiki.compone
 import {YidffmainComponent} from "./routes/yidff/yidffmain.component";
 import {IdfamainComponent} from "./routes/idfa/idfamain.component";
 import {DocuFesListComponent} from "./routes/docu-fes-list/docu-fes-list.component";
+import {CoreComponent} from "./routes/core/core.component";
 
 const myRoutes = [
   {path:'main', component:MainComponent},
@@ -17,6 +18,7 @@ const myRoutes = [
   {path: 'yidff', component:YidffmainComponent},
   {path: 'idfa', component:IdfamainComponent},
   {path: 'docufeslist', component:DocuFesListComponent},
+  {path: 'core', component:CoreComponent},
   {path:'', component:HomeComponent}
 ];
 

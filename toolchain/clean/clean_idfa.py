@@ -34,9 +34,10 @@ print(df.columns)
 # dataframe_to_mongo(df, 'docu_archive', 'docu_from_wiki')
 
 
-# ローカルのMongoDBではなく、Firebaseに保存する
-fbdbClass = pys.PyrebaseClass()
-fbdbClass.init_db()
+def batch1():
+    # ローカルのMongoDBではなく、Firebaseに保存する
+    fbdbClass = pys.PyrebaseClass()
+    fbdbClass.init_db()
 
-records = df.to_dict('records')
-fbdbClass.push_data('idfa_works', records)
+    records = df.to_dict('records')
+    fbdbClass.push_data('idfa_works', records)

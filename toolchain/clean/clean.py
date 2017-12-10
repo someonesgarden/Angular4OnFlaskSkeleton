@@ -30,7 +30,6 @@ df = pd.read_json(open(rootdir+'/app/static/data/nobel_winners_full.json')) # js
 # bi_col = df.born_in
 # print(bi_col)
 # print(type(bi_col))
-
 # 3) Data Clearning Function
 
 def clean_data(df):
@@ -69,13 +68,12 @@ def clean_data(df):
 
 #######################################
 
+def batch1():
+    df_clean, df_born_in = clean_data(df)
+    dataframe_to_mongo(df_clean, 'nobel_prize', 'winners')
+    dataframe_to_mongo(df_born_in, 'nobel_prize', 'winners_born_in')
 
-
-df_clean, df_born_in = clean_data(df)
-dataframe_to_mongo(df_clean, 'nobel_prize', 'winners')
-dataframe_to_mongo(df_born_in, 'nobel_prize', 'winners_born_in')
-
-# 4)Mini-BIosもJSONからMONGODBに保存
-df_winner_bios = pd.read_json(open(rootdir+'/app/static/data/minibios.json'))
-df_winner_bios = df_winner_bios.where((pd.notnull(df_winner_bios)), None)
-dataframe_to_mongo(df_winner_bios, 'nobel_prize', 'winner_bios')
+    # 4)Mini-BIosもJSONからMONGODBに保存
+    df_winner_bios = pd.read_json(open(rootdir+'/app/static/data/minibios.json'))
+    df_winner_bios = df_winner_bios.where((pd.notnull(df_winner_bios)), None)
+    dataframe_to_mongo(df_winner_bios, 'nobel_prize', 'winner_bios')

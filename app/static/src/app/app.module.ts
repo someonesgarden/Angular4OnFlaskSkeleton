@@ -23,6 +23,7 @@ import {DocuJapWikiModule} from "./routes/docu-jap-wiki/docu-jap-wiki.module";
 import {IdfaModule} from "./routes/idfa/idfa.module";
 import {DocuFesListModule} from "./routes/docu-fes-list/docu-fes-list.module";
 import {HatenaService} from "./services/hatena.service";
+import {CoreModule} from "./routes/core/core.module";
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {HatenaService} from "./services/hatena.service";
     DocuJapWikiModule,
     YidffModule,
     IdfaModule,
-    DocuFesListModule
+    DocuFesListModule,
+    CoreModule
   ],
   providers: [
     FirebaseService,
