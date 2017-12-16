@@ -20,3 +20,5 @@ app/static/src/app/app-firebase.config.ts
 /data/mnist/
 /scrapy/docu_jap_wiki.zip
 /scrapy/
+/toolchain/clean/.ipynb_checkpoints/
+/toolchain/chainer/

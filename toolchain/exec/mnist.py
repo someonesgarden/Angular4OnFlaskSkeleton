@@ -2,11 +2,17 @@
 # -*- coding:utf-8 -*-
 
 import urllib.request as req
-import gzip, os, os.path
+import gzip, os, os.path, sys
 import struct
 from sklearn import svm, metrics
+import numpy as np
+rootdir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+print(rootdir)
+sys.path.append(rootdir)
 
-savepath = "./data/mnist"
+from chainer import datasets
+
+savepath = rootdir+"/data/mnist"
 baseurl = "http://yann.lecun.com/exdb/mnist"
 files = [
     "train-images-idx3-ubyte.gz",
@@ -83,27 +89,42 @@ def load_csv(fname):
     return {"labels":labels, "images":images}
 
 
+# 4) chainer用にmnistデータを補正する
+def mnist_data_for_chainer(csv_loaded_data):
+    images = np.array(csv_loaded_data["images"])
+    labels = np.array(csv_loaded_data["labels"])
+
+    X = []
+    Y = []
+    n = len(images)
+    for i in range(n):
+        d = np.array(images[i].reshape(28,28), dtype=np.float32)
+        X.append([d])
+        Y.append(labels[i].astype(np.int32))
+    X = np.array(X)
+    Y = np.array(Y)
+    return datasets.TupleDataset(X, Y)
+
+
 # download_mnist()
 
-# TO_CSV: データ数の上下とファイル名を決めてcsvにする
-to_csv("train", 3000)
-to_csv("t10k", 500)
 
-# LOADCSV: CSVデータの読み込み
-data = load_csv(savepath+"/train.csv")
-test = load_csv(savepath+"/t10k.csv")
-
-# FIT: データを学習
-clf = svm.SVC()
-clf.fit(data["images"], data["labels"])
-
-# PREDICT* データから予測
-pre = clf.predict(test["images"])
-
-# ACCURARY: 正確性の判定
-ac_score = metrics.accuracy_score(test["labels"],pre)
-cl_report = metrics.classification_report(test["labels"], pre)
-print("正解率＝", ac_score)
-print("レポート=")
-print(cl_report)
+def main():
+    # TO_CSV: データ数の上下とファイル名を決めてcsvにする
+    to_csv("train", 3000)
+    to_csv("t10k", 500)
+    # LOADCSV: CSVデータの読み込み
+    data = load_csv(savepath+"/train.csv")
+    test = load_csv(savepath+"/t10k.csv")
+    # FIT: データを学習
+    clf = svm.SVC()
+    clf.fit(data["images"], data["labels"])
+    # PREDICT* データから予測
+    pre = clf.predict(test["images"])
+    # ACCURARY: 正確性の判定
+    ac_score = metrics.accuracy_score(test["labels"],pre)
+    cl_report = metrics.classification_report(test["labels"], pre)
+    print("正解率＝", ac_score)
+    print("レポート=")
+    print(cl_report)
 

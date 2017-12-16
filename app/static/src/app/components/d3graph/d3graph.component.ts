@@ -26,6 +26,7 @@ export class D3graphComponent implements OnInit {
 
   constructor(element: ElementRef, private ngZone: NgZone, d3Service: D3Service) {
     this.d3 = d3Service.getD3();
+
     this.parentNativeElement = element.nativeElement;
   }
 

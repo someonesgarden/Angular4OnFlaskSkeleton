@@ -25,11 +25,14 @@
         "assets/css/loader.css",
         "assets/css/semantic/sidebar.css",
         "assets/css/semantic/menu.css",
-        "../node_modules/semantic-ui/dist/semantic.min.css"
+        "../node_modules/semantic-ui/dist/semantic.min.css",
+        "../node_modules/semantic-ui-range/range.css"
       ],
       "scripts": ["../node_modules/jquery/dist/jquery.min.js",
       "../node_modules/semantic-ui/dist/semantic.min.js",
+        "../node_modules/semantic-ui-range/range.js",
         "../node_modules/d3-geo/build/d3-geo.min.js",
+        "../node_modules/d3-drag/build/d3-drag.min.js",
         "../node_modules/d3-geo-projection/build/d3-geo-projection.min.js",
         "../node_modules/firebase/firebase.js"
       ],

@@ -24,6 +24,7 @@ import {IdfaModule} from "./routes/idfa/idfa.module";
 import {DocuFesListModule} from "./routes/docu-fes-list/docu-fes-list.module";
 import {HatenaService} from "./services/hatena.service";
 import {CoreModule} from "./routes/core/core.module";
+import {D3Service} from "d3-ng2-service";
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {CoreModule} from "./routes/core/core.module";
   ],
   providers: [
     FirebaseService,
-    HatenaService
+    HatenaService,
+    D3Service
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

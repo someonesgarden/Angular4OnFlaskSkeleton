@@ -1,3 +1,70 @@
-<p>
-  core works!
-</p>
+<div id="loader" *ngIf="!data_isready">
+  <img class="logo" src="/static/src/assets/img/nocracy_logo.png">
+  <hr noshade color="white" size="1">
+  <h2>Now Loading data...</h2>
+</div>
+<div class="ui stackable inverted menu">
+  <div class="header item">
+    <img class="logo" src="/static/src/assets/img/nocracy_logo.png">
+  </div>
+  <div class="right menu">
+    <div class="item">
+      <h1> CORE / D3</h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="visualization" style="position:relative;">
+  <form #f="ngForm">
+    <div class="ui inverted segment" style="position:absolute;bottom:10px;left:10px;z-index: 100;">
+      <label>N value(networkX):= {{ myformValues.range_n }}</label>
+      <div class="ui segment">
+        <div class="ui labeled range" id="range_n"></div>
+      </div>
+
+      <label>P value(networkX):= {{ myformValues.range_p }}</label>
+      <div class="ui segment">
+        <div class="ui labeled range" id="range_p"></div>
+      </div>
+
+       <label>collide:= {{ myformValues.range_c }}</label>
+      <div class="ui segment">
+        <div class="ui labeled range" id="range_c"></div>
+      </div>
+
+       <select class="ui fluid dropdown" (change)="genderSelect($event)" >
+                <option value="All" selected>F/M</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </select>
+
+      <div class="ui inverted form">
+        <div class="two fields">
+          <div class="field">
+            <label>Form1</label>
+            <input placeholder="form1" type="text" name="form1" ngModel>
+          </div>
+
+          <div class="field">
+            <label>Form2</label>
+            <input placeholder="form2" type="text" name="form2" ngModel>
+          </div>
+        </div>
+        <div class="inline field">
+          <div class="ui checkbox">
+            <input type="checkbox" tabindex="0" class="visible" name="checkbox2" ngModel>
+            <label>Checkbox2</label>
+          </div>
+        </div>
+        <div class="ui submit button" (click)="d3Form(f.value)" *ngIf="data_processing">Re:Calculate</div>
+         <div class="ui submit button" (click)="showGraph()">Re:Draw</div>
+      </div>
+    </div>
+  </form>
+
+  <div id="d3-container"></div>
+</div>
+
+
+

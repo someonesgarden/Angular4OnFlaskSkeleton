@@ -5,15 +5,39 @@ from . import default
 from flask import Flask, request, render_template, url_for, jsonify
 import sys
 import os
+import json
 rootdir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.append(rootdir)
+
+
 import pandas as pd
 from bson.json_util import dumps
 from app.models.mongofunc import get_mongo_database
 db = get_mongo_database('nobel_prize')
 
-import app.services.pyrebase_db as pys
+from toolchain.networkx.graphgenerator1 import GenerateGraph
 
+@default.route('/echo', methods=['POST'])
+def echo():
+    # print(request.headers)
+    data = request.data
+    my_json = data.decode('utf8').replace("'", '"')
+    jsondata = json.loads(my_json)
+    print(jsondata)
+    json_file = jsondata['json_file']
+
+    gd = GenerateGraph(json_file)
+
+    if jsondata['range_n']:
+        n = jsondata['range_n']
+        p = jsondata['range_p']
+        datajson = gd.graphOutJSON(n, p)
+    else:
+        datajson = gd.graphOutJSON()
+
+    print("datajson=", datajson)
+
+    return jsonify(datajson)
 
 @default.route('/')
 @default.route('/core')

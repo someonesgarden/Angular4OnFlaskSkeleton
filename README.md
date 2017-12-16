@@ -43,7 +43,7 @@ https://github.com/someonesgarden/Flask_Angular4_Skeleton
 1. ターミナルから必要なライブラリをインストール。
 `pip install -r requirements.txt`
 2. 以下のコマンドでFlask サーバー起動。
-`python manage.py runserver`
+`python3 manage.py runserver`
 
 3. 別のターミナルで `cd app/static`
 4 必要ライブラリをインストール。
